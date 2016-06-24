@@ -2,7 +2,7 @@
 #
 .DS_Store
 
-.idea
+.idea/
 .gradle
 local.properties
 
