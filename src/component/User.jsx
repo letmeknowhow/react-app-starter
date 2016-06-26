@@ -8,9 +8,7 @@ import { connect } from 'react-redux';
 import action from '../action/index';
 
 import Tool from '../lib/Tool/Tool';
-import config from '../config/config';
 import {Header, Footer, Loading} from './common/index';
-import erweima from '../erweima.png';
 
 
 class User extends Component {
@@ -22,7 +20,7 @@ class User extends Component {
                     <div className="head">
                         <div className="headimg" data-flex="dir:top main:center cross:center">
                             <div className="pictrue" style={{ backgroundImage: 'url(http://vpic.video.qq.com/4252003160/t0156a0xb39_ori_1.jpg)' }}></div>
-                            <div className="name">狼族小狈</div>
+                            <div className="name">中旅总社</div>
                         </div>
                     </div>
                     <div className="logins" data-flex="box:mean">

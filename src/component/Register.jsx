@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import action from '../action/index';
 
 import Tool from '../lib/Tool/Tool';
-import config from '../config/config';
 import {Header, Footer, Loading} from './common/index';
 
 
@@ -24,19 +23,13 @@ export default class Register extends Component {
             toemail: '', //邮箱
             tosex: '0', //性别，0女，1男
             codecheck: '4000', //验证码
-            classid: config.indexClassId,
-            siteid: config.siteid,
             sid: '-2-0-0-0-0',
             backurl: '' //来源地址
         };
 
         this.submit = () => {
-            Tool.post('/waplogin.aspx', this.state, (text) => {
-                alert(text);
-                console.log(text);
-            }, () => {
-                console.log('登录失败');
-            });
+            alert(text);
+            console.log(text);
         }
 
     }

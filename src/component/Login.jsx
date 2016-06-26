@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import action from '../action/index';
 
 import Tool from '../lib/Tool/Tool';
-import config from '../config/config';
 import {Header, Footer, Loading} from './common/index';
 
 
@@ -20,17 +19,11 @@ export default class Login extends Component {
             logname: '',
             logpass: '',
             action: 'login',
-            classid: config.indexClassId,
-            siteid: config.siteid
         };
 
         this.submit = () => {
-            Tool.post('/JsonAPI/waplogin.aspx', this.state, (text) => {
-                alert(text);
-                console.log(text);
-            }, () => {
-                console.log('登录失败');
-            });
+            alert(text);
+            console.log(text);
         }
 
     }

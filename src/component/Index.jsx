@@ -25,7 +25,6 @@ import {Header, Footer, Loading} from './common/index';
  */
 import Tool from '../lib/Tool/Tool';
 import GetNext from '../lib/GetNext/GetNext';
-import config from '../config/config';
 /*
  组件入口文件
  */
