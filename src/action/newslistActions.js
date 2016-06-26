@@ -1,5 +1,5 @@
 //'use strict';
-//import webApi from '../lib/Tool/WebAPI';
+import WebAPI from '../lib/Tool/WebAPI';
 
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from './actionTypes';
 
@@ -17,6 +17,23 @@ function getNewsSuccess(data) {
 // 异步请求财富列表数据
 const getNews = (opts) => {
   return dispatch => {
+    /**
+     * http请求远程图片
+     */
+    //WebAPI.getNews({columnId:784})
+    //  .then((data) => {
+    //    const bannerList = data.json.columnIssueList;
+    //    let news = bannerList.map((banner, ind) => {
+    //      return {
+    //        id: ind,
+    //        book_img: banner.picUrl,
+    //        book_title: banner.title,
+    //        book_content: columnIssueId,
+    //        book_click: 343
+    //      };
+    //    });
+    //    dispatch(getNewsSuccess(news));
+    //  });
 
     dispatch(getNewsSuccess([
       {id: '1', book_img: pic1, book_title: '桑拿, 蒸腾芬兰', book_content: '你好,欢迎加入港中旅', book_click: 343},
