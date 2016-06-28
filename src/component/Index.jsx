@@ -56,7 +56,7 @@ class Index extends Component {
 
   componentDidMount() {
     const {actions} = this.props;
-    actions.getNews({columnId:784});
+    actions.getNews({columnId: 784});
   }
 
   shouldComponentUpdate(nextProps, nextState) {

@@ -67,7 +67,7 @@ export default {
     {
       name: 'getNews',
       method: 'get',
-      url: 'http://m.ctsho.com/ajax/ColumnAjax',
+      url: 'ajax/ColumnAjax',
       desc: '查询新闻列表'
     }
   ]

@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-/*
-    redux 相关
-*/
-import { connect } from 'react-redux';
-import action from '../action/index';
-
 import Tool from '../lib/Tool/Tool';
 import {Header, Footer, Loading} from './common/index';
 

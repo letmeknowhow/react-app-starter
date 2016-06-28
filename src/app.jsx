@@ -2,8 +2,8 @@ require("babel-core/register");
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import route from './config/route';
-import store from './config/store';
+import route from './route';
+import store from './store/store';
 import './css/resets.less'; //重置浏览器默认样式
 // import './css/data-flex.min.css'; //css布局文件
 import 'flex-css-layout';
