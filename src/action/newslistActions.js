@@ -7,7 +7,7 @@ import pic2 from '../assets/2.png';
 import pic3 from '../assets/3.png';
 import pic4 from '../assets/4.png';
 
-const getNewsSuccess = (data) => {
+export function getNewsSuccess(data) {
   return {
     type: NEWS_SUCCESS,
     payload: data
@@ -19,7 +19,7 @@ const getNewsFailed = (data) => {
   };
 };
 // 异步请求财富列表数据
-const getNews = (opts) => {
+export function getNews (opts) {
   return dispatch => {
     /**
      * http请求远程图片
@@ -47,5 +47,3 @@ const getNews = (opts) => {
     ]));
   };
 };
-
-export default {getNews};

@@ -13,7 +13,7 @@ import React, {Component} from 'react';
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import newslistActions from '../action/newslistActions';
+import {getNews} from '../action/newslistActions';
 
 /*
  公共react组件
@@ -56,7 +56,7 @@ class Index extends Component {
 
   componentDidMount() {
     const {actions} = this.props;
-    actions.getNews({columnId: 784});
+    actions.getNews({columnId:784});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -119,7 +119,7 @@ export default connect(state => ({
     state: state.newslistReducer
   }),
   (dispatch) => ({
-    actions: bindActionCreators(newslistActions, dispatch)
+    actions: bindActionCreators({getNews}, dispatch)
   })
 )(Index);
 //export default connect((state) => { return { state: state.classNewList }; }, action('classNewList'))(Index); //连接redux

@@ -1,12 +1,12 @@
 import React, {Component } from 'react';
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
-import Index from './component/Index';
-import Menu from './component/Menu';
-import About from './component/About';
-import User from './component/User';
-import Login from './component/Login';
-import Register from './component/Register';
-import MsgList from './component/MsgList';
+import Index from '../component/Index';
+import Menu from '../component/Menu';
+import About from '../component/About';
+import User from '../component/User';
+import Login from '../component/Login';
+import Register from '../component/Register';
+import MsgList from '../component/MsgList';
 
 
 class Main extends Component {
