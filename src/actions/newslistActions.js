@@ -26,7 +26,7 @@ const getNewsFailed = (data) => {
 };
 // 异步请求财富列表数据
 export function getNews (opts) {
-  return dispatch => {
+  return (dispatch, getState) => {
     /**
      * http请求远程图片
      */

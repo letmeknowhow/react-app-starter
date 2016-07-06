@@ -21,7 +21,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /^node_modules$/,
-        loaders: [ 'babel?presets=es2015']
+        include: path.join(__dirname, 'src'),
+        loaders: ['react-hot', 'jsx', 'babel?presets[]=es2015,presets[]=react']
       }, {
         test: /\.css$/,
         exclude: /^node_modules$/,
@@ -51,6 +52,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx'], //后缀名自动补全
+    extensions: ['', '.js'], //后缀名自动补全
   }
 };
