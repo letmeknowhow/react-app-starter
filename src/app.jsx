@@ -1,3 +1,9 @@
+/**
+ *  Class: app
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 项目入口
+ */
 require("babel-core/register");
 import React from 'react'
 import ReactDOM from 'react-dom'

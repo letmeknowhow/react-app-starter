@@ -1,3 +1,9 @@
+/**
+ *  Class: store
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description:
+ */
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import reducer from '../reducer/newslistReducer';
 import thunk from 'redux-thunk';

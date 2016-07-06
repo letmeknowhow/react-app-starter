@@ -143,7 +143,7 @@ let deleteRequest = (opts) => {
     }
   };
 };
-// 下面的几种方法 应该 考虑 用正则的方式 来匹配
+
 let putStatusRequest = (opts) => {
   return async function (id, data) {
     try {

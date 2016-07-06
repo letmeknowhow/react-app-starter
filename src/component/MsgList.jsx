@@ -1,3 +1,9 @@
+/**
+ *  Class: MsgList
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 我的消息
+ */
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
@@ -11,9 +17,6 @@ import {Header, Footer, Loading} from './common/index';
 
 /**
  * (上拉加载box)
- *
- * @class DrawLoad
- * @extends {Component}
  */
 class DrawLoad extends Component {
   constructor(props) {
@@ -34,9 +37,6 @@ class DrawLoad extends Component {
 
 /**
  * (上拉加载没有数据时，显示组件)
- *
- * @class DrawLoadDataNo
- * @extends {Component}
  */
 class DrawLoadDataNo extends Component {
   constructor(props) {
@@ -50,9 +50,6 @@ class DrawLoadDataNo extends Component {
 }
 /**
  * (上拉加载有数据时显示组件)
- *
- * @class DrawLoadDataYes
- * @extends {Component}
  */
 class DrawLoadDataYes extends Component {
   constructor(props) {
@@ -67,9 +64,6 @@ class DrawLoadDataYes extends Component {
 
 /**
  * (触发加载机制的box)
- *
- * @class DrawLoadState
- * @extends {Component}
  */
 class DrawLoadState extends Component {
   constructor(props) {

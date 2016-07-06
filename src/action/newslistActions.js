@@ -1,3 +1,9 @@
+/**
+ *  Class: newslistActions
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 新闻action
+ */
 import WebAPI from '../lib/Tool/WebAPI';
 
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from './actionTypes';

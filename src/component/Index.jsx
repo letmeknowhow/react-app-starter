@@ -1,7 +1,9 @@
 /**
- * 主页
+ *  Class: Index
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 主页
  */
-
 /*
  react 相关
  */

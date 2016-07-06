@@ -1,3 +1,9 @@
+/**
+ *  Class: menu
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 分类
+ */
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 

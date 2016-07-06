@@ -1,3 +1,9 @@
+/**
+ *  Class: newslistReducer
+ *  Author: Niu Xiaoyu
+ *  Date: 16/2/16.
+ *  Description: 新闻reducer
+ */
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from '../action/actionTypes';
 let initialState = {
   list: []
@@ -18,6 +24,6 @@ const newslistReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default {newslistReducer};
