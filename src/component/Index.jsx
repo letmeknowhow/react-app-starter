@@ -37,7 +37,7 @@ class Index extends Component {
   }
 
   render() {
-    const { state } = this.props;
+    const { actions, state } = this.props;
     let main = null;
     if (Tool.isArray(state.list)) {
       main = (<ArticleList list={state.list}/>);
@@ -50,6 +50,7 @@ class Index extends Component {
     return (
       <div>
         <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'}/>
+        <div className="btn" onClick={this.handleRefresh.bind(this)}>刷新</div>
         {main}
         <Footer index={index}/>
       </div>
@@ -62,8 +63,9 @@ class Index extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-
-    return true;
+    //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
+    //该函数默认返回true
+    return nextProps.state != this.props.state;
   }
 
   componentDidUpdate() {
@@ -72,6 +74,11 @@ class Index extends Component {
 
   componentWillUnmount() {
 
+  }
+
+  handleRefresh() {
+    const {actions} = this.props;
+    actions.getNews({columnId:784});
   }
 }
 
