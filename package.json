@@ -1,22 +1,17 @@
 {
-  "name": "react-kelink",
-  "version": "1.0.3",
+  "name": "react-route-redux",
+  "version": "0.0.1",
   "description": "",
-  "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1340641314/react-kelink.git"
+    "url": ""
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/1340641314/react-kelink/issues"
-  },
-  "homepage": "https://github.com/1340641314/react-kelink#readme",
+  "author": "Niu Xiaoyu",
+  "license": "MIT",
   "dependencies": {
     "flex-css-layout": "^1.2.8",
     "react": "^15.0.1",
