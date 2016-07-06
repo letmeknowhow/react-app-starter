@@ -4,14 +4,14 @@
  *  Date: 16/2/16.
  *  Description: 新闻action
  */
-import WebAPI from '../lib/Tool/WebAPI';
+import WebAPI from '../apis/WebAPI';
 
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from './actionTypes';
 
-import pic1 from '../assets/1.png';
-import pic2 from '../assets/2.png';
-import pic3 from '../assets/3.png';
-import pic4 from '../assets/4.png';
+import pic1 from '../images/1.png';
+import pic2 from '../images/2.png';
+import pic3 from '../images/3.png';
+import pic4 from '../images/4.png';
 
 export function getNewsSuccess(data) {
   return {

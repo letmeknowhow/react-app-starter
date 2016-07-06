@@ -15,7 +15,7 @@ import React, {Component} from 'react';
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getNews} from '../action/newslistActions';
+import {getNews} from '../actions/newslistActions';
 
 /*
  公共react组件

@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 
 import {Header, Footer, Loading} from './common/index';
-import pic1 from '../assets/1.png';
+import pic1 from '../images/1.png';
 
 
 class About extends Component {

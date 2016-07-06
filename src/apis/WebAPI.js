@@ -8,7 +8,7 @@
 //'use strict';
 require('regenerator/runtime');
 import _ from 'lodash';
-import config from '../../config/WebApiConfig';
+import config from './WebApiConfig';
 
 
 class WebAPI {

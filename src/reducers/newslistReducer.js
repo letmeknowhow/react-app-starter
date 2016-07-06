@@ -4,7 +4,7 @@
  *  Date: 16/2/16.
  *  Description: 新闻reducer
  */
-import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from '../action/actionTypes';
+import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from '../actions/actionTypes';
 let initialState = {
   list: []
 };
