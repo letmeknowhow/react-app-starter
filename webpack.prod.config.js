@@ -4,27 +4,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 module.exports = {
-  //entry: {
-  //  app: './src/app', //编译的入口文件
-  //},
-  //output: {
-  //  publicPath: '/build/', //服务器根路径
-  //  path: './static/build', //编译到当前目录
-  //  filename: '[name].js' //编译后的文件名字
-  //},
-
-  /**
-   * 支持热替换的配置
-   */
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './src/app'
-  ],
+  entry: {
+    app: './src/app'
+  },
   output: {
-    path: path.join(__dirname, 'build'), //编译到当前目录,
-    filename: 'app.js', //编译后的文件名字
-    publicPath: '/static/'
+    path: './static/build',
+    filename: 'app.js',
+    publicPath: '/build/'
   },
 
   module: {
@@ -32,7 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /^node_modules$/,
-        loaders: [ 'babel?presets=es2015']
+        loader: 'babel?presets=es2015'
       }, {
         test: /\.css$/,
         exclude: /^node_modules$/,
@@ -52,21 +38,22 @@ module.exports = {
       }, {
         test: /\.jsx$/,
         exclude: /^node_modules$/,
-        loaders: ['react-hot', 'jsx', 'babel?presets[]=es2015,presets[]=react']
+        loaders: ['jsx', 'babel?presets[]=es2015,presets[]=react']
       }
     ]
   },
   plugins: [
-    //new webpack.DefinePlugin({ //编译成生产版本
-    //  //'process.env': {
-    //  //  NODE_ENV: JSON.stringify('production')
-    //  //}
-    //  //'process.env.NODE_ENV': '"production"'   //开发版本
-    //  'process.env.NODE_ENV': '"development"'   //开发版本
-    //}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new ExtractTextPlugin('app.css'),
-    //commonsPlugin,
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'], //后缀名自动补全

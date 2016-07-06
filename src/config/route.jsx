@@ -21,8 +21,7 @@ class Main extends Component {
       <div>{this.props.children}</div>
     );
   }
-}
-;
+};
 const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>

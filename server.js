@@ -13,7 +13,7 @@
 //
 ////设置任意路由都返回html
 //app.get('*', function (req, res) {
-//    res.sendFile(__dirname + '/webapp.html')
+//    res.sendFile(__dirname + '/index.html')
 //});
 //
 ////创建服务器
@@ -23,7 +23,7 @@
 
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var config = require('./webpack.dev.config');
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
