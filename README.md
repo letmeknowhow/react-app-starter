@@ -2,6 +2,13 @@
 ```
 react
 ```
+# 环境配置
+
+#### WebStrom 开发环境配置
+1. 确定启用node环境 Language & FrameWorks -> Node And Npm -> Node Core Library enable 为 `enable`
+2. Javascript Version 为 `JSX Harmony`
+3. Javascript -> Libray -> ECMAScript 6 勾选
+4. 启用ESLint代码质量及代码风格检查 Javascript -> Code Qutity tool -> Eslint
 
 ### 编译流程
 ```
