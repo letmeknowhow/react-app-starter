@@ -12,9 +12,6 @@ import {Link} from 'react-router';
  全局公共头部
  */
 export class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     let {title, leftTo, leftIcon, rightTo, rightIcon } = this.props;
@@ -23,13 +20,13 @@ export class Header extends Component {
     if (leftTo && leftIcon) {
       left = (
         <Link to={leftTo}>
-          <i className={'iconfont icon-' + leftIcon}></i>
+          <i className={`iconfont icon-${leftIcon}`}></i>
         </Link>
       );
     } else if (leftIcon === 'fanhui') { //返回上一页
       left = (
         <a onClick={this.context.router.goBack}>
-          <i className={'iconfont icon-' + leftIcon}></i>
+          <i className={`iconfont icon-${leftIcon}`}></i>
         </a>
       );
     }
@@ -39,7 +36,7 @@ export class Header extends Component {
     if (rightTo && rightIcon) {
       right = (
         <Link to={rightTo}>
-          <i className={'iconfont icon-' + rightIcon}></i>
+          <i className={`iconfont icon-${rightIcon}`}></i>
         </Link>
       );
     }
@@ -59,14 +56,14 @@ export class Header extends Component {
 }
 Header.contextTypes = {
   router: React.PropTypes.object.isRequired
-}
+};
 /*
  loading 加载动画
  */
 export class Loading extends Component {
   render() {
     return (
-      <div className={'data-load data-load-' + this.props.loadState}>
+      <div className={`data-load data-load-${this.props.loadState}`}>
         <div className="msg">{this.props.loadMsg}</div>
       </div>
     );
@@ -88,7 +85,7 @@ export class Footer extends Component {
           </li>
           <li className={arr[1]}>
             <Link to="/Menu">
-              <i className="iconfont icon-caidan"></i>分类
+              <i className="iconfont icon-caidan"></i>WeUI
             </Link>
           </li>
           <li className={arr[2]}>

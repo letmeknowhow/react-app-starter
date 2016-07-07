@@ -46,7 +46,7 @@ export function getNews(opts) {
     //  });
 
     dispatch(getNewsSuccess([
-      {id: '1', book_img: pic1, book_title: '桑拿, 蒸腾芬兰', book_content: '你好,欢迎加入港中旅', book_click: 343},
+      {id: '1', book_img: pic1, book_title: '桑拿, 蒸腾芬兰', book_content: '你好,欢迎加入港中旅1', book_click: 343},
       {id: '2', book_img: pic2, book_title: '伦敦, 新西区时代', book_content: '你好,欢迎加入港中旅', book_click: 343},
       {id: '3', book_img: pic3, book_title: '马里, 西非DNA', book_content: '你好,欢迎加入港中旅', book_click: 343},
       {id: '4', book_img: pic4, book_title: '曼哈顿, 文艺彻骨', book_content: '你好,欢迎加入港中旅', book_click: 343}

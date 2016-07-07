@@ -13,19 +13,20 @@ import {Link} from 'react-router';
 import { connect } from 'react-redux';
 
 import Tool from '../lib/Tool/Tool';
-import {Header, Footer, Loading} from './common/index';
+import {Header, Footer, Loading} from './../component/common/index';
 
 
 class User extends Component {
   render() {
     return (
       <div>
-        <Header title="我的"/>
+        <Header title="我的" />
         <div className="user">
           <div className="head">
             <div className="headimg" data-flex="dir:top main:center cross:center">
-              <div className="pictrue"
-                   style={{ backgroundImage: 'url(http://vpic.video.qq.com/4252003160/t0156a0xb39_ori_1.jpg)' }}></div>
+              <div
+                className="pictrue" style={{ backgroundImage: 'url(http://vpic.video.qq.com/4252003160/t0156a0xb39_ori_1.jpg)' }}>
+              </div>
               <div className="name">中旅总社</div>
             </div>
           </div>
@@ -99,10 +100,9 @@ class User extends Component {
             </li>
           </ul>
         </div>
-        <Footer index="2"/>
+        <Footer index="2" />
       </div>
     );
   }
 }
-;
 export default User;

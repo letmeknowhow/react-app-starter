@@ -13,7 +13,7 @@ import {Link} from 'react-router';
 import { connect } from 'react-redux';
 
 import Tool from '../lib/Tool/Tool';
-import {Header, Footer, Loading} from './common/index';
+import {Header, Footer, Loading} from './../component/common/index';
 
 /**
  * (上拉加载box)
@@ -81,19 +81,19 @@ export default class MsgList extends Component {
     super(props);
     this.start = () => {
       console.log('开始加载');
-    }
+    };
     this.success = () => {
       console.log('加载成功');
-    }
+    };
     this.error = () => {
       console.log('开始加载');
-    }
+    };
   }
 
   render() {
     return (
       <div>
-        <Header leftTo="/User" leftIcon="fanhui" title="我的消息"/>
+        <Header leftTo="/User" leftIcon="fanhui" title="我的消息" />
         <DrawLoad
           url="a.html"
           send={{ page: 1, classid: 1 }}

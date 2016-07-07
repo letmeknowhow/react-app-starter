@@ -9,6 +9,7 @@ react
 2. Javascript Version 为 `JSX Harmony`
 3. Javascript -> Libray -> ECMAScript 6 勾选
 4. 启用ESLint代码质量及代码风格检查 Javascript -> Code Qutity tool -> Eslint
+5. 使用2个空格替换Tab符 Code Style -> JavaScript -> Tab and Indents
 
 ### 编译流程
 ```
@@ -21,3 +22,9 @@ react
 5.浏览器访问：http://localhost:3000/
 （注：首次使用webpack请先执行：npm install -g webpack）
 ```
+
+#### 第三方模块
+
+| 模块   |      说明
+|----------|:-------------:|
+| [react-weui](https://github.com/weui/react-weui) | 由微信官方设计团队为微信 Web 开发量身设计

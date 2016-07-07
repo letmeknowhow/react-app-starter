@@ -66,6 +66,8 @@
     //不强制img设置alt属性
     "jsx-a11y/img-has-alt": 0,
     "max-len": [0, 80, 4],
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    //不强制使用===
+    "eqeqeq": 0
   }
 }

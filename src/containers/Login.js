@@ -13,7 +13,7 @@ import {Link} from 'react-router';
 import { connect } from 'react-redux';
 
 import Tool from '../lib/Tool/Tool';
-import {Header, Footer, Loading} from './common/index';
+import {Header, Footer, Loading} from './../component/common/index';
 
 
 export default class Login extends Component {
@@ -27,9 +27,9 @@ export default class Login extends Component {
     };
 
     this.submit = () => {
-      alert(text);
-      console.log(text);
-    }
+      alert('登陆');
+      console.log('登陆');
+    };
 
   }
 
@@ -37,7 +37,7 @@ export default class Login extends Component {
     let {logname, logpass} = this.state;
     return (
       <div>
-        <Header leftIcon="fanhui" title="登录"/>
+        <Header leftIcon="fanhui" title="登录" />
         <div className="login">
           <div className="line" data-flex="box:first">
             <div className="key" data-flex="box:mean">
@@ -46,8 +46,9 @@ export default class Login extends Component {
               <div>名</div>
             </div>
             <div className="value">
-              <input type="text" defaultValue={logname} placeholder="用户名/手机号码/ID"
-                     onInput={(e) => { this.state.logname = e.target.value; } }/>
+              <input
+                type="text" defaultValue={logname} placeholder="用户名/手机号码/ID"
+                     onInput={(e) => { this.state.logname = e.target.value; }} />
             </div>
           </div>
           <div className="line" data-flex="box:first">
@@ -56,8 +57,9 @@ export default class Login extends Component {
               <div>码</div>
             </div>
             <div className="value">
-              <input type="password" defaultValue={logpass} placeholder="密码"
-                     onInput={(e) => { this.state.logpass = e.target.value; } }/>
+              <input
+                type="password" defaultValue={logpass} placeholder="密码"
+                     onInput={(e) => { this.state.logpass = e.target.value; }} />
             </div>
           </div>
           <div className="btn" onClick={this.submit}>登录</div>
@@ -69,4 +71,4 @@ export default class Login extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
-};
+}

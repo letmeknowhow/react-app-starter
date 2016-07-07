@@ -6,13 +6,13 @@
  */
 import React, {Component } from 'react';
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
-import Index from '../component/Index';
-import Menu from '../component/Menu';
-import About from '../component/About';
-import User from '../component/User';
-import Login from '../component/Login';
-import Register from '../component/Register';
-import MsgList from '../component/MsgList';
+import Index from '../containers/Index';
+import Menu from '../containers/Menu';
+import About from '../containers/About';
+import User from '../containers/User';
+import Login from '../containers/Login';
+import Register from '../containers/Register';
+import MsgList from '../containers/MsgList';
 
 
 class Main extends Component {
@@ -21,17 +21,17 @@ class Main extends Component {
       <div>{this.props.children}</div>
     );
   }
-};
+}
 const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
-      <IndexRoute component={Index}/>
-      <Route path="Menu" component={Menu}/>
-      <Route path="About" component={About}/>
-      <Route path="User" component={User}/>
-      <Route path="Login" component={Login}/>
-      <Route path="Register" component={Register}/>
-      <Route path="MsgList" component={MsgList}/>
+      <IndexRoute component={Index} />
+      <Route path="Menu" component={Menu} />
+      <Route path="About" component={About} />
+      <Route path="User" component={User} />
+      <Route path="Login" component={Login} />
+      <Route path="Register" component={Register} />
+      <Route path="MsgList" component={MsgList} />
     </Route>
   </Router>
 );

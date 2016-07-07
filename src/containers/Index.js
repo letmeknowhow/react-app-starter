@@ -20,13 +20,13 @@ import {getNews} from '../actions/newslistActions';
 /*
  公共react组件
  */
-import {Header, Footer, Loading} from './common/index';
+import {Header, Footer, Loading} from './../component/common/index';
 
 /*
  相关的模块调用
  */
 import Tool from '../lib/Tool/Tool';
-import GetNext from '../lib/GetNext/GetNext';
+
 /*
  组件入口文件
  */
@@ -50,7 +50,6 @@ class Index extends Component {
     return (
       <div>
         <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
-        <div className="btn" onClick={this.handleRefresh}>刷新</div>
         {main}
         <Footer index={index} />
       </div>
@@ -92,15 +91,15 @@ export class ArticleList extends Component {
         {
           this.props.list.map((item, index) => {
             let {id, book_title, book_content, book_click, book_img} = item;
-            book_content = book_content.substring(0, 50) + '...';
+            book_content = `${book_content.substring(0, 50)}...`;
             let images = null;
             if (/^http/.test(book_img)) {
               images = (
-                <div className="pictrue"><img src={book_img}/></div>
+                <div className="pictrue"><img src={book_img} /></div>
               );
             } else {
               images = (
-                <div className="pictrue"><img src={book_img}/></div>
+                <div className="pictrue"><img src={book_img} /></div>
               );
             }
 
@@ -124,11 +123,9 @@ export class ArticleList extends Component {
   }
 }
 
-export default connect(state => ({
-    state: state.newslistReducer
-  }),
+export default connect(state =>
+  ({ state: state.newslistReducer }),
   (dispatch) => ({
     actions: bindActionCreators({getNews}, dispatch)
   })
 )(Index);
-//export default connect((state) => { return { state: state.classNewList }; }, action('classNewList'))(Index); //连接redux
