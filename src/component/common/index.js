@@ -54,7 +54,7 @@ export class Header extends Component {
           {right}
         </div>
       </header>
-    )
+    );
   }
 }
 Header.contextTypes = {

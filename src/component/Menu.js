@@ -11,25 +11,24 @@ import Tool from '../lib/Tool/Tool';
 import {Header, Footer, Loading} from './common/index';
 
 export default class Menu extends Component {
-    constructor(props) {
-        super(props);
 
-    }
-    render() {
+  render() {
 
-        return (
-            <div>
-                <Header title="分类" />
-                <h1>abc</h1>
-                <Footer index="1"/>
-            </div>
-        );
-    }
-    componentDidMount() {
+    return (
+      <div>
+        <Header title="分类" />
+        <h1>abc</h1>
+        <Footer index="1" />
+      </div>
+    );
+  }
 
-    }
-    componentWillUnmount() {
+  componentDidMount() {
 
-    }
-};
+  }
+
+  componentWillUnmount() {
+
+  }
+}
 

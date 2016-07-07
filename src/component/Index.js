@@ -33,14 +33,14 @@ import GetNext from '../lib/GetNext/GetNext';
 class Index extends Component {
   constructor(props) {
     super(props);
-
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
   render() {
     const { actions, state } = this.props;
     let main = null;
     if (Tool.isArray(state.list)) {
-      main = (<ArticleList list={state.list}/>);
+      main = (<ArticleList list={state.list} />);
     }
     let index = 0;
     let leftTo = null;
@@ -49,17 +49,17 @@ class Index extends Component {
 
     return (
       <div>
-        <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'}/>
-        <div className="btn" onClick={this.handleRefresh.bind(this)}>刷新</div>
+        <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
+        <div className="btn" onClick={this.handleRefresh}>刷新</div>
         {main}
-        <Footer index={index}/>
+        <Footer index={index} />
       </div>
     );
   }
 
   componentDidMount() {
     const {actions} = this.props;
-    actions.getNews({columnId:784});
+    actions.getNews({columnId: 784});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -78,7 +78,7 @@ class Index extends Component {
 
   handleRefresh() {
     const {actions} = this.props;
-    actions.getNews({columnId:784});
+    actions.getNews({columnId: 784});
   }
 }
 
@@ -107,16 +107,16 @@ export class ArticleList extends Component {
             return (
               <li key={index}>
 
-                  {images}
-                  <h3>{book_title}</h3>
-                  <div className="content">{book_content}</div>
+                {images}
+                <h3>{book_title}</h3>
+                <div className="content">{book_content}</div>
 
                 <div className="bottom" data-flex="main:justify">
                   <div className="click">阅读：{book_click}</div>
 
                 </div>
               </li>
-            )
+            );
           })
         }
       </ul>

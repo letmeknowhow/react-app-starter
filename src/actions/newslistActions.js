@@ -13,7 +13,7 @@ import pic2 from '../images/2.png';
 import pic3 from '../images/3.png';
 import pic4 from '../images/4.png';
 
-export function getNewsSuccess(data) {
+const getNewsSuccess = (data) => {
   return {
     type: NEWS_SUCCESS,
     payload: data
@@ -25,7 +25,7 @@ const getNewsFailed = (data) => {
   };
 };
 // 异步请求财富列表数据
-export function getNews (opts) {
+export function getNews(opts) {
   return (dispatch, getState) => {
     /**
      * http请求远程图片
@@ -52,4 +52,4 @@ export function getNews (opts) {
       {id: '4', book_img: pic4, book_title: '曼哈顿, 文艺彻骨', book_content: '你好,欢迎加入港中旅', book_click: 343}
     ]));
   };
-};
+}

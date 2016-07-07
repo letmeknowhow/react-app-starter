@@ -19,10 +19,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        exclude: /^node_modules$/,
+        test: /\.(js|jsx)$/,
         include: path.join(__dirname, 'src'),
-        loaders: ['react-hot', 'jsx', 'babel?presets[]=es2015,presets[]=react']
+        exclude: /^node_modules$/,
+        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
       }, {
         test: /\.css$/,
         exclude: /^node_modules$/,
@@ -39,10 +39,6 @@ module.exports = {
         test: /\.(png|jpg)$/,
         exclude: /^node_modules$/,
         loader: 'url?limit=20000&name=[name].[ext]' //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
-      }, {
-        test: /\.jsx$/,
-        exclude: /^node_modules$/,
-        loaders: ['react-hot', 'jsx', 'babel?presets[]=es2015,presets[]=react']
       }
     ]
   },
@@ -52,6 +48,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js'], //后缀名自动补全
+    extensions: ['', '.js', '.jsx'], //后缀名自动补全
   }
 };

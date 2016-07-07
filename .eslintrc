@@ -58,6 +58,14 @@
     // 不强制jsx看属性换行时限制12空格
     "react/jsx-indent-props": 0,
     // 允许一页中写多个组件
-    "react/no-multi-comp": 0
+    "react/no-multi-comp": 0,
+    //不强制进行propTypes校验
+    "react/prop-types": 0,
+    //不强制限定Component为简单函数形式
+    "react/prefer-stateless-function": 0,
+    //不强制img设置alt属性
+    "jsx-a11y/img-has-alt": 0,
+    "max-len": [0, 80, 4],
+    "arrow-body-style": 0
   }
 }

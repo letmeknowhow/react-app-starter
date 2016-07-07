@@ -15,10 +15,10 @@ class About extends Component {
   render() {
     return (
       <div>
-        <Header leftIcon="fanhui" title="关于"/>
+        <Header leftIcon="fanhui" title="关于" />
         <div className="about">
           <div className="saoma">
-            <div className="pictrue"><img src={pic1}/></div>
+            <div className="pictrue"><img src={pic1} /></div>
           </div>
 
 
