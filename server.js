@@ -1,3 +1,7 @@
+/**
+ * production环境测试服务
+ * @type {webpack|exports|module.exports}
+ */
 //var express = require('express');
 //var bodyParser = require('body-parser');
 //var request = require('request');
@@ -21,6 +25,10 @@
 //    console.log('请在浏览器中打开：http://localhost:3000/')
 //});
 
+/**
+ * development环境测试服务
+ * @type {webpack|exports|module.exports}
+ */
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.dev.config');

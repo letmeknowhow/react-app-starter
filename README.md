@@ -10,6 +10,7 @@ react
 3.执行cmd命令安装依赖模块： npm install 
 4.运行开发环境：npm start
   产品包:      npm run build
+  切换两种环境时需要修改"server.js"(根据文件内注释)
 5.浏览器访问：http://localhost:3000/
-6.发布应用：webpack -p （注：首次使用webpack请先执行：npm install -g webpack）
+（注：首次使用webpack请先执行：npm install -g webpack）
 ```
