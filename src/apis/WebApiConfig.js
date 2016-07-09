@@ -1,7 +1,7 @@
 /**
  *  Class: WebApiConfig
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 请求配置项
  */
 
@@ -71,4 +71,4 @@ export default {
       desc: '查询新闻列表'
     }
   ]
-}
+};

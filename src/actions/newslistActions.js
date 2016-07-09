@@ -1,7 +1,7 @@
 /**
  *  Class: newslistActions
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 新闻action
  */
 import WebAPI from '../apis/WebAPI';

@@ -1,7 +1,7 @@
 /**
  *  Class: Index
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 主页
  */
 /*
@@ -27,6 +27,11 @@ import {Header, Footer, Loading} from './../component/common/index';
  */
 import Tool from '../lib/Tool/Tool';
 
+import WeUI from 'react-weui';
+import 'weui';
+
+const {Button} = WeUI;
+
 /*
  组件入口文件
  */
@@ -37,6 +42,7 @@ class Index extends Component {
   }
 
   render() {
+    console.log('render');
     const { actions, state } = this.props;
     let main = null;
     if (Tool.isArray(state.list)) {
@@ -50,6 +56,7 @@ class Index extends Component {
     return (
       <div>
         <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
+        <Button onClick={this.handleRefresh}>ActionSheet</Button>
         {main}
         <Footer index={index} />
       </div>

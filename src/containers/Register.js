@@ -1,7 +1,7 @@
 /**
  *  Class: Register
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 注册页
  */
 import React, {Component} from 'react';

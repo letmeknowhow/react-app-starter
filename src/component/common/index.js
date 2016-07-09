@@ -1,18 +1,17 @@
 /**
  *  Class: Header, Loading, Footer
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 页头, loading, 页脚
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
-
+import PureComponent from '../PureComponent';
 /*
  全局公共头部
  */
-export class Header extends Component {
-
+export class Header extends PureComponent {
   render() {
     let {title, leftTo, leftIcon, rightTo, rightIcon } = this.props;
     let left = null;
@@ -60,7 +59,7 @@ Header.contextTypes = {
 /*
  loading 加载动画
  */
-export class Loading extends Component {
+export class Loading extends PureComponent {
   render() {
     return (
       <div className={`data-load data-load-${this.props.loadState}`}>
@@ -70,7 +69,7 @@ export class Loading extends Component {
   }
 }
 
-export class Footer extends Component {
+export class Footer extends PureComponent {
   render() {
     let arr = [];
     arr[this.props.index] = 'on';

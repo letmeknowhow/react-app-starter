@@ -1,7 +1,7 @@
 /**
  *  Class: User
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 我的
  */
 import React, {Component} from 'react';

@@ -1,7 +1,7 @@
 /**
  *  Class: global
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 配置项
  */
   

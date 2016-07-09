@@ -1,7 +1,7 @@
 /**
  *  Class: WebAPI
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 处理请求
  */
 
@@ -20,7 +20,7 @@ class WebAPI {
   /** 网络异常处理*/
   catchHandle(ex) {
     throw ex;
-  };
+  }
 
   // fetch 的核心方法
   async _fetch(opts) {
@@ -56,7 +56,7 @@ let responseResolve = async (response) => {
     response
   };
   if (response.status === 200 || response.status === 201) {
-    try{
+    try {
       return await response.json().then((responseJson) => {
         json = responseJson.response;
         backJson.json = json;
@@ -78,7 +78,6 @@ let responseResolve = async (response) => {
   }
   if (response.status === 500) {
   }
-
 };
 
 

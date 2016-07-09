@@ -1,7 +1,7 @@
 /**
  *  Class: newslistReducer
  *  Author: Niu Xiaoyu
- *  Date: 16/2/16.
+ *  Date: 16/7/9.
  *  Description: 新闻reducer
  */
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from '../actions/actionTypes';
