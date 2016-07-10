@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {getNews} from '../actions/news';
 
-import ReactList from 'react-list';
+import Infinite from 'react-infinite';
 
 /*
  公共react组件
@@ -34,16 +34,23 @@ import {Header, Footer, Loading} from './../component/common/index';
 class Index extends Component {
   constructor(props) {
     super(props);
-    this.handleRefresh = this.handleRefresh.bind(this);
-    this.renderItem = this.renderItem.bind(this);
+    this.state = {
+      isInfiniteLoading: false
+    };
+    this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
   }
 
   render() {
     const { state } = this.props;
-    //let main = null;
-    //if (Tool.isArray(state.list)) {
-    //  main = (<ArticleList list={state.list} />);
-    //}
+    let main = state.list.map((article, index) => {
+      return (
+        <Article
+          key={index}
+          article={article}
+        />
+      );
+    });
+
     let index = 0;
     let leftTo = null;
     let leftIcon = null;
@@ -52,15 +59,16 @@ class Index extends Component {
     return (
       <div>
         <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
-        <ul>
-          <ReactList
-            itemRenderer={this.renderItem}
-            length={state.list.length}
-            type={'uniform'}
-            useStaticSize={true}
-            threshold={0}
-          />
-        </ul>
+        <Infinite
+          elementHeight={229}
+          containerHeight={document.body.clientHeight - 100}
+          onInfiniteLoad={this.handleInfiniteLoad}
+          loadingSpinnerDelegate={this.elementInfiniteLoad()}
+          infiniteLoadBeginEdgeOffset={document.body.clientHeight}
+          isInfiniteLoading={this.state.isInfiniteLoading}
+        >
+          {main}
+        </Infinite>
         <Footer index={index} />
       </div>
     );
@@ -71,25 +79,32 @@ class Index extends Component {
     actions.getNews({columnId: 784});
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
-    //该函数默认返回true
-    return nextProps.state != this.props.state;
-  }
+  //shouldComponentUpdate(nextProps, nextState) {
+  //  //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
+  //  //该函数默认返回true
+  //  return nextProps.state != this.props.state;
+  //}
 
-  renderItem(index, key) {
-    const { state } = this.props;
+  elementInfiniteLoad() {
     return (
-      <Article
-        key={key}
-        article={state.list[index]}
-      />
+      <div>
+        Loading...
+      </div>
     );
   }
 
-  handleRefresh() {
-    const {actions} = this.props;
-    actions.getNews({columnId: 784});
+  handleInfiniteLoad() {
+    const me = this;
+    const {actions} = me.props;
+    me.setState({
+      isInfiniteLoading: true
+    });
+    setTimeout(() => {
+      actions.getNews({columnId: 784});
+      me.setState({
+        isInfiniteLoading: false
+      });
+    }, 2500);
   }
 }
 
@@ -127,7 +142,7 @@ class Article extends Component {
 }
 
 export default connect(state =>
-  ({ state: state.news }),
+    ({state: state.news}),
   (dispatch) => ({
     actions: bindActionCreators({getNews}, dispatch)
   })

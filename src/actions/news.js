@@ -44,16 +44,13 @@ export function getNews(opts) {
     //    });
     //    dispatch(getNewsSuccess(news));
     //  });
-
-    dispatch(getNewsSuccess([
+    const oriData = getState().news.list;
+    const newData = oriData.concat([
       {id: '1', bookImg: pic1, bookTitle: '桑拿, 蒸腾芬兰', bookContent: '你好,欢迎加入港中旅1', bookClick: 343},
       {id: '2', bookImg: pic2, bookTitle: '伦敦, 新西区时代', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
       {id: '3', bookImg: pic3, bookTitle: '马里, 西非DNA', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
-      {id: '4', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
-      {id: '5', bookImg: pic1, bookTitle: '桑拿, 蒸腾芬兰', bookContent: '你好,欢迎加入港中旅1', bookClick: 343},
-      {id: '6', bookImg: pic2, bookTitle: '伦敦, 新西区时代', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
-      {id: '7', bookImg: pic3, bookTitle: '马里, 西非DNA', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
-      {id: '8', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343}
-    ]));
+      {id: '4', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343}
+    ]);
+    dispatch(getNewsSuccess(newData));
   };
 }

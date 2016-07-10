@@ -23,13 +23,13 @@ class WebAPI {
   }
 
   // fetch 的核心方法
-  async _fetch(opts) {
-    opts = _.extend({
+  async innerFetch(opts1) {
+    let opts = _.extend({
       method: 'GET',
       url: null,
       body: null,
       callback: null
-    }, opts);
+    }, opts1);
     let reqOpts = {
       method: opts.method,
       headers: {
@@ -71,25 +71,26 @@ let responseResolve = async (response) => {
     try {
       // 清除本地token
       //webApi.actions.deleteSessionToken();
+      console.log('403');
     }
     catch (ex) {
       console.error('清除本地token失败:  WebApi.js');
     }
   }
-  if (response.status === 500) {
-  }
+  return null;
 };
 
 
 let postRequest = (opts) => {
   return async function (data) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'POST',
         url: opts.url,
         body: data,
       }).then(responseResolve);
     } catch (e) { this.catchHandle(e); }
+    return null;
   };
 };
 let getRequest = (opts) => {
@@ -98,13 +99,13 @@ let getRequest = (opts) => {
     for (let property in data) {
       let encodeKey = encodeURIComponent(property);
       let encdeeValue = encodeURIComponent(data[property]);
-      formBody.push(encodeKey + '=' + encdeeValue);
+      formBody.push(`${encodeKey}=${encdeeValue}`);
     }
     formBody = formBody.join('&');
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'GET',
-        url: opts.url + '?' + formBody
+        url: `${opts.url}?${formBody}`
       }).then(responseResolve);
     } catch (e) {
 
@@ -116,9 +117,9 @@ let getRequest = (opts) => {
 let putRequest = (opts) => {
   return async function (id, data) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'PUT',
-        url: opts.url + '/' + id,
+        url: `${opts.url}/${id}`,
         body: data
       }).then(responseResolve);
     } catch (e) {
@@ -131,9 +132,9 @@ let putRequest = (opts) => {
 let deleteRequest = (opts) => {
   return async function (id) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'DELETE',
-        url: opts.url + '/' + id
+        url: `${opts.url}/${id}`
       }).then(responseResolve);
     } catch (e) {
 
@@ -146,9 +147,9 @@ let deleteRequest = (opts) => {
 let putStatusRequest = (opts) => {
   return async function (id, data) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'PUT',
-        url: opts.url + '/' + id + '/status',
+        url: `${opts.url}/${id}/status`,
         body: data
       }).then(responseResolve);
     } catch (e) {
@@ -161,7 +162,7 @@ let putStatusRequest = (opts) => {
 let putUserRequest = (opts) => {
   return async function (data) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'PUT',
         url: opts.url,
         body: data
@@ -178,14 +179,14 @@ let getIdRequest = (opts) => {
     let formBody = [];
     for (let property in data) {
       let encodeKey = encodeURIComponent(property);
-      let encdeeValue = encodeURIComponent(data[property]);
-      formBody.push(encodeKey + '=' + encdeeValue);
+      let encodeValue = encodeURIComponent(data[property]);
+      formBody.push(`${encodeKey}=${encodeValue}`);
     }
     formBody = formBody.join('&');
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'GET',
-        url: opts.url + '/' + id + '?' + formBody
+        url: `${opts.url}/${id}?${formBody}`
       }).then(responseResolve);
     } catch (e) {
 
@@ -197,9 +198,9 @@ let getIdRequest = (opts) => {
 let putTwoRequest = (opts) => {
   return async function (url1, url2, data) {
     try {
-      return await this._fetch({
+      return await this.innerFetch({
         method: 'PUT',
-        url: opts.url + '/' + url1 + '/' + url2,
+        url: `${opts.url}/${url1}/${url2}`,
         body: data
       }).then(responseResolve);
     } catch (e) {
@@ -228,5 +229,5 @@ for (let i = 0; i < config.api.length; i++) {
     WebAPI.prototype[config.api[i].name] = putTwoRequest(config.api[i]);
   }
 }
-let webApi = new WebAPI();
+const webApi = new WebAPI();
 export default webApi;

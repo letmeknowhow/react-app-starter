@@ -68,6 +68,10 @@
     "max-len": [0, 80, 4],
     "arrow-body-style": 0,
     //不强制使用===
-    "eqeqeq": 0
+    "eqeqeq": 0,
+    "quote-props": 0,
+    "brace-style": 0,
+    "guard-for-in": 0,
+    "no-restricted-syntax": 0
   }
 }
