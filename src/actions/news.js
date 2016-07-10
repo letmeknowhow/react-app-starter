@@ -1,5 +1,5 @@
 /**
- *  Class: newslistActions
+ *  Class: news
  *  Author: Niu Xiaoyu
  *  Date: 16/7/9.
  *  Description: 新闻action
@@ -46,10 +46,14 @@ export function getNews(opts) {
     //  });
 
     dispatch(getNewsSuccess([
-      {id: '1', book_img: pic1, book_title: '桑拿, 蒸腾芬兰', book_content: '你好,欢迎加入港中旅1', book_click: 343},
-      {id: '2', book_img: pic2, book_title: '伦敦, 新西区时代', book_content: '你好,欢迎加入港中旅', book_click: 343},
-      {id: '3', book_img: pic3, book_title: '马里, 西非DNA', book_content: '你好,欢迎加入港中旅', book_click: 343},
-      {id: '4', book_img: pic4, book_title: '曼哈顿, 文艺彻骨', book_content: '你好,欢迎加入港中旅', book_click: 343}
+      {id: '1', bookImg: pic1, bookTitle: '桑拿, 蒸腾芬兰', bookContent: '你好,欢迎加入港中旅1', bookClick: 343},
+      {id: '2', bookImg: pic2, bookTitle: '伦敦, 新西区时代', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
+      {id: '3', bookImg: pic3, bookTitle: '马里, 西非DNA', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
+      {id: '4', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
+      {id: '5', bookImg: pic1, bookTitle: '桑拿, 蒸腾芬兰', bookContent: '你好,欢迎加入港中旅1', bookClick: 343},
+      {id: '6', bookImg: pic2, bookTitle: '伦敦, 新西区时代', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
+      {id: '7', bookImg: pic3, bookTitle: '马里, 西非DNA', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
+      {id: '8', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343}
     ]));
   };
 }

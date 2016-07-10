@@ -15,7 +15,9 @@ import React, {Component} from 'react';
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getNews} from '../actions/newslistActions';
+import {getNews} from '../actions/news';
+
+import ReactList from 'react-list';
 
 /*
  公共react组件
@@ -25,12 +27,6 @@ import {Header, Footer, Loading} from './../component/common/index';
 /*
  相关的模块调用
  */
-import Tool from '../lib/Tool/Tool';
-
-import WeUI from 'react-weui';
-import 'weui';
-
-const {Button} = WeUI;
 
 /*
  组件入口文件
@@ -39,15 +35,15 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.renderItem = this.renderItem.bind(this);
   }
 
   render() {
-    console.log('render');
-    const { actions, state } = this.props;
-    let main = null;
-    if (Tool.isArray(state.list)) {
-      main = (<ArticleList list={state.list} />);
-    }
+    const { state } = this.props;
+    //let main = null;
+    //if (Tool.isArray(state.list)) {
+    //  main = (<ArticleList list={state.list} />);
+    //}
     let index = 0;
     let leftTo = null;
     let leftIcon = null;
@@ -56,8 +52,15 @@ class Index extends Component {
     return (
       <div>
         <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
-        <Button onClick={this.handleRefresh}>ActionSheet</Button>
-        {main}
+        <ul>
+          <ReactList
+            itemRenderer={this.renderItem}
+            length={state.list.length}
+            type={'uniform'}
+            useStaticSize={true}
+            threshold={0}
+          />
+        </ul>
         <Footer index={index} />
       </div>
     );
@@ -74,12 +77,14 @@ class Index extends Component {
     return nextProps.state != this.props.state;
   }
 
-  componentDidUpdate() {
-
-  }
-
-  componentWillUnmount() {
-
+  renderItem(index, key) {
+    const { state } = this.props;
+    return (
+      <Article
+        key={key}
+        article={state.list[index]}
+      />
+    );
   }
 
   handleRefresh() {
@@ -91,47 +96,38 @@ class Index extends Component {
 /*
  文章列表
  */
-export class ArticleList extends Component {
+class Article extends Component {
   render() {
+    const { article } = this.props;
+    let {id, bookTitle, bookContent, bookClick, bookImg } = article;
+    bookContent = `${bookContent.substring(0, 50)}...`;
+    let images = null;
+    if (/^http/.test(bookImg)) {
+      images = (
+        <div className="pictrue"><img src={bookImg} /></div>
+      );
+    } else {
+      images = (
+        <div className="pictrue"><img src={bookImg} /></div>
+      );
+    }
     return (
-      <ul className="article-list">
-        {
-          this.props.list.map((item, index) => {
-            let {id, book_title, book_content, book_click, book_img} = item;
-            book_content = `${book_content.substring(0, 50)}...`;
-            let images = null;
-            if (/^http/.test(book_img)) {
-              images = (
-                <div className="pictrue"><img src={book_img} /></div>
-              );
-            } else {
-              images = (
-                <div className="pictrue"><img src={book_img} /></div>
-              );
-            }
+      <li>
+        {images}
+        <h3>{bookTitle}</h3>
+        <div className="content">{bookContent}</div>
 
-            return (
-              <li key={index}>
+        <div className="bottom" data-flex="main:justify">
+          <div className="click">阅读：{bookClick}</div>
 
-                {images}
-                <h3>{book_title}</h3>
-                <div className="content">{book_content}</div>
-
-                <div className="bottom" data-flex="main:justify">
-                  <div className="click">阅读：{book_click}</div>
-
-                </div>
-              </li>
-            );
-          })
-        }
-      </ul>
+        </div>
+      </li>
     );
   }
 }
 
 export default connect(state =>
-  ({ state: state.newslistReducer }),
+  ({ state: state.news }),
   (dispatch) => ({
     actions: bindActionCreators({getNews}, dispatch)
   })

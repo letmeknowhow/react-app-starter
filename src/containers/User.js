@@ -12,7 +12,7 @@ import {Link} from 'react-router';
  */
 import { connect } from 'react-redux';
 
-import Tool from '../lib/Tool/Tool';
+import Tool from '../apis/Tool';
 import {Header, Footer, Loading} from './../component/common/index';
 
 

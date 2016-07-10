@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-import Tool from '../lib/Tool/Tool';
+import Tool from '../apis/Tool';
 import {Header, Footer, Loading} from './../component/common/index';
 
 import Page from '../component/page';

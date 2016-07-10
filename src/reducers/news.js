@@ -1,5 +1,5 @@
 /**
- *  Class: newslistReducer
+ *  Class: news
  *  Author: Niu Xiaoyu
  *  Date: 16/7/9.
  *  Description: 新闻reducer
@@ -10,7 +10,7 @@ let initialState = {
 };
 // 新闻相关的 reducer
 
-const newslistReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   let nextstate;
   switch (action.type) {
     // 获取新闻列表成功
@@ -25,5 +25,3 @@ const newslistReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default {newslistReducer};
