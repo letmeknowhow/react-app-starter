@@ -79,6 +79,7 @@ class Index extends Component {
     actions.getNews({columnId: 784});
   }
 
+  //todo 为了演示react-infinite的例子临时注释掉
   //shouldComponentUpdate(nextProps, nextState) {
   //  //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
   //  //该函数默认返回true
