@@ -54,9 +54,10 @@ export default class Menu extends Component {
       <Page title="ActionSheet" spacing>
         <Button onClick={this.show}>ActionSheet</Button>
         <ActionSheet menus={this.state.menus} actions={this.state.actions} show={this.state.show} onRequestClose={this.hide} />
-        <div className="button_sp_area">
-          <Link to="/"><Button type="primary" plain>首页</Button></Link>
-          <Link to="/User"><Button type="default" plain>我的</Button></Link>
+        <div className="logins" data-flex="box:justify dir:right cross:center">
+          <Link to="/" activeStyle={{color: 'red'}}><Button style={{height: 100}} type="primary" plain>首页</Button></Link>
+          <Link to="/User"><Button style={{height: 50}} type="default" plain>我的1</Button></Link>
+          <Link to="/User"><Button style={{height: 70}} type="default" plain>我的2</Button></Link>
         </div>
       </Page>
     );

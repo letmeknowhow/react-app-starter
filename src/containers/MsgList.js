@@ -103,7 +103,7 @@ export default class MsgList extends Component {
           error={this.error}
         >
           <DrawLoadDataYes>
-            <div>循环列表</div>
+            <div>{this.props.params.productTitle}</div>
           </DrawLoadDataYes>
           <DrawLoadDataNo>
             <div>没有数据</div>

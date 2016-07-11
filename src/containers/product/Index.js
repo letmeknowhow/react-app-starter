@@ -8,21 +8,21 @@
  react 相关
  */
 import React, {Component} from 'react';
-//import {Link} from 'react-router';
+import {Link} from 'react-router';
 
 /*
  redux 相关
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getNews} from '../actions/news';
+import {getNews} from '../../actions/news';
 
 import Infinite from 'react-infinite';
 
 /*
  公共react组件
  */
-import {Header, Footer, Loading} from './../component/common/index';
+import {Header, Footer, Loading} from '../../component/common/index';
 
 /*
  相关的模块调用
@@ -64,7 +64,7 @@ class Index extends Component {
           containerHeight={document.body.clientHeight - 100}
           onInfiniteLoad={this.handleInfiniteLoad}
           loadingSpinnerDelegate={this.elementInfiniteLoad()}
-          infiniteLoadBeginEdgeOffset={document.body.clientHeight}
+          infiniteLoadBeginEdgeOffset={50}
           isInfiniteLoading={this.state.isInfiniteLoading}
         >
           {main}
@@ -95,6 +95,7 @@ class Index extends Component {
   }
 
   handleInfiniteLoad() {
+    console.log('handleInfiniteLoad');
     const me = this;
     const {actions} = me.props;
     me.setState({
@@ -129,14 +130,16 @@ class Article extends Component {
     }
     return (
       <li>
-        {images}
-        <h3>{bookTitle}</h3>
-        <div className="content">{bookContent}</div>
+        <Link to={`/ProductDetail/${bookTitle}`}>
+          {images}
+          <h3>{bookTitle}</h3>
+          <div className="content">{bookContent}</div>
 
-        <div className="bottom" data-flex="main:justify">
-          <div className="click">阅读：{bookClick}</div>
+          <div className="bottom" data-flex="main:justify">
+            <div className="click">阅读：{bookClick}</div>
 
-        </div>
+          </div>
+        </Link>
       </li>
     );
   }

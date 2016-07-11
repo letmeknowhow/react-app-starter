@@ -7,6 +7,7 @@
 
 //'use strict';
 require('regenerator/runtime');
+import 'whatwg-fetch';
 import _ from 'lodash';
 import config from './WebApiConfig';
 

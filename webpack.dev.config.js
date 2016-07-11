@@ -1,11 +1,11 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-//var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
-var path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'whatwg-fetch',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
     './src/app'
@@ -44,7 +44,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('app.css'),
-    //commonsPlugin,
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {

@@ -36,10 +36,10 @@ export function getNews(opts) {
     //    let news = bannerList.map((banner, ind) => {
     //      return {
     //        id: ind,
-    //        book_img: banner.picUrl,
-    //        book_title: banner.title,
-    //        book_content: banner.columnIssueId,
-    //        book_click: 343
+    //        bookImg: banner.picUrl,
+    //        bookTitle: banner.title,
+    //        bookContent: banner.columnIssueId,
+    //        bookClick: 343
     //      };
     //    });
     //    dispatch(getNewsSuccess(news));

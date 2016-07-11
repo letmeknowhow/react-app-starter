@@ -6,7 +6,8 @@
  */
 import React, {Component } from 'react';
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
-import Index from '../containers/Index';
+import ProductList from '../containers/product/Index';
+import ProductDetail from '../containers/product/Detail';
 import Menu from '../containers/Menu';
 import About from '../containers/About';
 import User from '../containers/User';
@@ -25,13 +26,14 @@ class Main extends Component {
 const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
-      <IndexRoute component={Index} />
+      <IndexRoute component={ProductList} />
       <Route path="Menu" component={Menu} />
       <Route path="About" component={About} />
       <Route path="User" component={User} />
       <Route path="Login" component={Login} />
       <Route path="Register" component={Register} />
       <Route path="MsgList" component={MsgList} />
+      <Route path="ProductDetail/:productTitle" component={ProductDetail} />
     </Route>
   </Router>
 );

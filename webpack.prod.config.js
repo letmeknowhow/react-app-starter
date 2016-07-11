@@ -1,12 +1,12 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-//var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
-var path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: {
-    app: './src/app'
-  },
+  entry: [
+    'whatwg-fetch',
+    './src/app'
+  ],
   output: {
     path: './static/build',
     filename: 'app.js',
