@@ -56,7 +56,7 @@ let responseResolve = async (response) => {
     json: {},
     response
   };
-  if (response.status === 200 || response.status === 201) {
+  if (response.ok) {
     try {
       return await response.json().then((responseJson) => {
         json = responseJson.response;

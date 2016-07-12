@@ -34,9 +34,6 @@ import {Header, Footer, Loading} from '../../component/common/index';
 class Index extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isInfiniteLoading: false
-    };
     this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
   }
 
@@ -65,7 +62,7 @@ class Index extends Component {
           onInfiniteLoad={this.handleInfiniteLoad}
           loadingSpinnerDelegate={this.elementInfiniteLoad()}
           infiniteLoadBeginEdgeOffset={50}
-          isInfiniteLoading={this.state.isInfiniteLoading}
+          isInfiniteLoading={state.isLoading}
         >
           {main}
         </Infinite>
@@ -75,21 +72,18 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {actions} = this.props;
-    actions.getNews({columnId: 784});
   }
 
-  //todo 为了演示react-infinite的例子临时注释掉
-  //shouldComponentUpdate(nextProps, nextState) {
-  //  //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
-  //  //该函数默认返回true
-  //  return nextProps.state != this.props.state;
-  //}
+  shouldComponentUpdate(nextProps, nextState) {
+    //判断新的状态是否与现有状态一致,如果一致,则返回false,阻止更新
+    //该函数默认返回true
+    return nextProps.state != this.props.state;
+  }
 
   elementInfiniteLoad() {
     return (
-      <div>
-        Loading...
+      <div data-flex="box:mean">
+        正在加载...
       </div>
     );
   }
@@ -98,14 +92,8 @@ class Index extends Component {
     console.log('handleInfiniteLoad');
     const me = this;
     const {actions} = me.props;
-    me.setState({
-      isInfiniteLoading: true
-    });
     setTimeout(() => {
       actions.getNews({columnId: 784});
-      me.setState({
-        isInfiniteLoading: false
-      });
     }, 2500);
   }
 }

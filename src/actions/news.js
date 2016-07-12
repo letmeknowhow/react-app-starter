@@ -6,7 +6,7 @@
  */
 import WebAPI from '../apis/WebAPI';
 
-import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from './actionTypes';
+import { NEWS_LOADING, NEWS_SUCCESS, NEWS_FAILURE, NEWS_SETSCROLL } from './actionTypes';
 
 import pic1 from '../images/1.png';
 import pic2 from '../images/2.png';
@@ -19,9 +19,10 @@ const getNewsSuccess = (data) => {
     payload: data
   };
 };
-const getNewsFailed = (data) => {
+const loadingNews = (data) => {
   return {
-    type: NEWS_FAILURE
+    type: NEWS_LOADING,
+    payload: data
   };
 };
 // 异步请求财富列表数据
@@ -30,6 +31,7 @@ export function getNews(opts) {
     /**
      * http请求远程图片
      */
+    dispatch(loadingNews(getState().news.list));
     //WebAPI.getNews(opts)
     //  .then((data) => {
     //    const bannerList = data.json.columnIssueList;

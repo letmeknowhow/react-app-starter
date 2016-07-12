@@ -2,15 +2,16 @@
 ```
 react
 ```
-# 环境配置
 
-#### WebStrom 开发环境配置
+### WebStrom 开发环境配置
 1. 确定启用node环境 Language & FrameWorks -> Node And Npm -> Node Core Library enable 为 `enable`
 2. Javascript Version 为 `JSX Harmony`
 3. Javascript -> Libray -> ECMAScript 6 勾选
 4. 启用ESLint代码质量及代码风格检查 Javascript -> Code Qutity tool -> Eslint
    配置文件使用项目列表中".eslintrc",上传代码时不允许有任何error
 5. 使用2个空格替换Tab符 Code Style -> JavaScript -> Tab and Indents
+6. 每个文件必须有文件头,注明文件名(类名),作者,创建日期,文件描述等信息, Editor->File and Code Templates -> JavaScript File
+
 
 ### 编译流程
 ```
