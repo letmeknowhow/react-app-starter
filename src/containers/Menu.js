@@ -7,7 +7,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-import Tool from '../apis/Tool';
 import {Header, Footer, Loading} from './../component/common/index';
 
 import Page from '../component/page';
@@ -45,6 +44,8 @@ export default class Menu extends Component {
       ]
     };
 
+    this.selectedDate = this.props.params.selected || (new Date('2016/7/20').Format('yyyy-MM-dd'));
+
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
   }
@@ -53,11 +54,28 @@ export default class Menu extends Component {
     return (
       <Page title="ActionSheet" spacing>
         <Button onClick={this.show}>ActionSheet</Button>
-        <ActionSheet menus={this.state.menus} actions={this.state.actions} show={this.state.show} onRequestClose={this.hide} />
+        <ActionSheet
+          menus={this.state.menus}
+          actions={this.state.actions}
+          show={this.state.show}
+         onRequestClose={this.hide}
+        />
         <div className="logins" data-flex="box:justify dir:right cross:center">
-          <Link to="/" activeStyle={{color: 'red'}}><Button style={{height: 100}} type="primary" plain>首页</Button></Link>
+          <Link to="/" activeStyle={{color: 'red'}}>
+            <Button style={{height: 100}} type="primary" plain>首页</Button>
+          </Link>
           <Link to="/User"><Button style={{height: 50}} type="default" plain>我的1</Button></Link>
           <Link to="/User"><Button style={{height: 70}} type="default" plain>我的2</Button></Link>
+        </div>
+        <div style={{width: '90%', backgroundColor: 'gray'}} data-flex="box:first">
+          <div style={{width: 70}} data-flex="box:mean">
+            <div>日期:</div>
+          </div>
+          <div className="value">
+            <Link to={`/DateSelector/${this.selectedDate}`}>
+              <input style={{borderWidth: 1, borderColor: 'black'}} type="text" defaultValue={this.selectedDate} placeholder="日期" />
+            </Link>
+          </div>
         </div>
       </Page>
     );
@@ -71,4 +89,3 @@ export default class Menu extends Component {
     this.setState({show: false});
   }
 }
-

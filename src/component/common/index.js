@@ -83,7 +83,7 @@ export class Footer extends PureComponent {
             </Link>
           </li>
           <li className={arr[1]}>
-            <Link to="/Menu">
+            <Link to="/Menu/ ">
               <i className="iconfont icon-caidan"></i>WeUI
             </Link>
           </li>

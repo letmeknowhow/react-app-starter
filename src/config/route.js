@@ -14,6 +14,7 @@ import User from '../containers/User';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
 import MsgList from '../containers/MsgList';
+import DateSelector from '../containers/DateSelector';
 
 
 class Main extends Component {
@@ -27,13 +28,14 @@ const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={ProductList} />
-      <Route path="Menu" component={Menu} />
+      <Route path="Menu/:selected" component={Menu} />
       <Route path="About" component={About} />
       <Route path="User" component={User} />
       <Route path="Login" component={Login} />
       <Route path="Register" component={Register} />
       <Route path="MsgList" component={MsgList} />
       <Route path="ProductDetail/:productTitle" component={ProductDetail} />
+      <Route path="DateSelector/:selected" component={DateSelector} />
     </Route>
   </Router>
 );
