@@ -28,7 +28,7 @@ const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={ProductList} />
-      <Route path="Menu/:selected" component={Menu} />
+      <Route path="Menu" component={Menu} />
       <Route path="About" component={About} />
       <Route path="User" component={User} />
       <Route path="Login" component={Login} />

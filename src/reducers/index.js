@@ -5,7 +5,9 @@
  *  Description:
  */
 import news from './news';
+import calendar from './calendar';
 
 export default {
   news,
+  calendar
 };

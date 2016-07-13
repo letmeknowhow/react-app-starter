@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-import {Header, Footer, Loading} from './../component/common/index';
+import { connect } from 'react-redux';
 
 import Page from '../component/page';
 
@@ -18,7 +18,7 @@ const {Button, ActionSheet} = WeUI;
 
 import '../css/menu.less';
 
-export default class Menu extends Component {
+class Menu extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -44,13 +44,14 @@ export default class Menu extends Component {
       ]
     };
 
-    this.selectedDate = this.props.params.selected || (new Date('2016/7/20').Format('yyyy-MM-dd'));
+    //this.selectedDate = this.props.params.selected || (new Date('2016/7/20').Format('yyyy-MM-dd'));
 
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
   }
 
   render() {
+    const selectDate = this.props.state.selected || new Date().Format('yyyy-MM-dd');
     return (
       <Page title="ActionSheet" spacing>
         <Button onClick={this.show}>ActionSheet</Button>
@@ -72,8 +73,8 @@ export default class Menu extends Component {
             <div>日期:</div>
           </div>
           <div className="value">
-            <Link to={`/DateSelector/${this.selectedDate}`}>
-              <input style={{borderWidth: 1, borderColor: 'black'}} type="text" defaultValue={this.selectedDate} placeholder="日期" />
+            <Link to={`/DateSelector/${selectDate}`}>
+              <input style={{borderWidth: 1, borderColor: 'black'}} type="text" defaultValue={selectDate} placeholder="日期" />
             </Link>
           </div>
         </div>
@@ -89,3 +90,7 @@ export default class Menu extends Component {
     this.setState({show: false});
   }
 }
+
+export default connect(state =>
+    ({state: state.calendar})
+)(Menu);

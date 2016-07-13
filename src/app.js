@@ -16,6 +16,7 @@ import 'flex-css-layout';
 import './css/style.less'; //css文件
 import './iconfont/iconfont.css'; //字体图标文件
 
+//为Date函数增加Format方法
 Date.prototype.Format = function (fmt) {
   let res = '';
   const o = {
@@ -25,7 +26,6 @@ Date.prototype.Format = function (fmt) {
     'm+': this.getMinutes(), //分
     's+': this.getSeconds(), //秒
     'q+': Math.floor((this.getMonth() + 3) / 3), //季度
-    'S': this.getMilliseconds() //毫秒
   };
   if (/(y+)/.test(fmt)) {
     res = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));

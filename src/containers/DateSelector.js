@@ -5,10 +5,18 @@
  *  Description: 日历
  */
 import React, { Component } from 'react';
+
+/*
+ redux 相关
+ */
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {changeDate} from '../actions/calendar';
+
 import Calendar from '../component/Calendar';
 import {Header} from './../component/common/index';
 
-export default class DateSelector extends Component {
+class DateSelector extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -19,8 +27,12 @@ export default class DateSelector extends Component {
 
   dateSelectedCallback(e, day, { selected, disabled }) {
     console.log(this.props.params.selected);
-    console.log(day.Format('yyyy-MM-dd'));
-    this.context.router.push(`/Menu/${day.Format('yyyy-MM-dd')}`);
+    const d = day.Format('yyyy-MM-dd');
+    console.log(d);
+    const {actions} = this.props;
+    actions.changeDate(d);
+    //this.context.router.push(`/Menu/${day.Format('yyyy-MM-dd')}`);
+    this.context.router.push('/Menu');
   }
 
   // 渲染
@@ -39,3 +51,10 @@ DateSelector.contextTypes = {
   router: React.PropTypes.object.isRequired,
   store: React.PropTypes.object.isRequired
 };
+
+export default connect(state =>
+    ({state: state.selected}),
+  (dispatch) => ({
+    actions: bindActionCreators({changeDate}, dispatch)
+  })
+)(DateSelector);
