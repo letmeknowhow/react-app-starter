@@ -30,7 +30,6 @@ class DateRangeSelector extends Component {
     const {key} = this.parseParam(this.props.params.selected);
     const {actions} = this.props;
     actions.changeDate({key, selected: day.Format('yyyy-MM-dd')});
-    //this.context.router.push(`/Menu/${day.Format('yyyy-MM-dd')}`);
     this.context.router.goBack();
   }
 
