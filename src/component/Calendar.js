@@ -46,12 +46,13 @@ export default class Calendar extends React.Component {
   }
 
   render() {
+    const props = this.props;
     return (
       <DayPicker
         locale="cn"
         localeUtils={localeUtils}
         //disabledDays={DateUtils.isPastDay}
-        disabledDays={this.isComingDay}
+        disabledDays={DateUtils.isPastDay}
         selectedDays={day => DateUtils.isSameDay(this.state.selectedDay, day)}
         onDayClick={this.props.selectedCallback}
       />
