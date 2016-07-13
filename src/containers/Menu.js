@@ -75,12 +75,12 @@ class Menu extends Component {
             <div>日期:</div>
           </div>
           <div className="value">
-            <Link to={`/DateSelector/start=${startDate}`}>
+            <Link to={`/DateRangeSelector/start=${startDate}`}>
               <div ref={s => { this.startDate = s; }}>{startDate}</div>
             </Link>
           </div>
           <div className="value">
-            <Link to={`/DateSelector/end=${endDate}`}>
+            <Link to={`/DateRangeSelector/end=${endDate}`}>
               <div ref={e => { this.endDate = e; }}>{endDate}</div>
             </Link>
           </div>

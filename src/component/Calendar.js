@@ -9,19 +9,15 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 const weekdaysLong = {
-  en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   cn: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 };
 const weekdaysShort = {
-  en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   cn: ['日', '一', '二', '三', '四', '五', '六']
 };
 const months = {
-  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   cn: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
 };
 const firstDayOfWeek = {
-  en: 0,
   cn: 0
 };
 
@@ -43,23 +39,10 @@ export default class Calendar extends React.Component {
     this.state = {
       selectedDay: new Date(this.props.selected),
     };
-
-    this.handleDayClick = this.handleDayClick.bind(this);
   }
 
-  handleDayClick(e, day, { selected, disabled }) {
-    if (disabled) {
-      return;
-    }
-    if (selected) {
-      this.setState({selectedDay: null});
-    } else {
-      this.setState({selectedDay: day});
-    }
-  }
-
-  todayBefore(day) {
-    return !(day > new Date());
+  isComingDay(day) {
+    return day > new Date();
   }
 
   render() {
@@ -67,7 +50,8 @@ export default class Calendar extends React.Component {
       <DayPicker
         locale="cn"
         localeUtils={localeUtils}
-        disabledDays={DateUtils.isPastDay}
+        //disabledDays={DateUtils.isPastDay}
+        disabledDays={this.isComingDay}
         selectedDays={day => DateUtils.isSameDay(this.state.selectedDay, day)}
         onDayClick={this.props.selectedCallback}
       />

@@ -1,5 +1,5 @@
 /**
- *  Class: DateSelector
+ *  Class: DateRangeSelector
  *  Author: Niu Xiaoyu
  *  Date: 16/7/12.
  *  Description: 日历
@@ -16,7 +16,7 @@ import {changeDate} from '../actions/calendar';
 import Calendar from '../component/Calendar';
 import {Header} from './../component/common/index';
 
-class DateSelector extends Component {
+class DateRangeSelector extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -51,7 +51,7 @@ class DateSelector extends Component {
   }
 }
 
-DateSelector.contextTypes = {
+DateRangeSelector.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
@@ -59,4 +59,4 @@ export default connect(state => ({state: state.sample}),
   (dispatch) => ({
     actions: bindActionCreators({changeDate}, dispatch)
   })
-)(DateSelector);
+)(DateRangeSelector);

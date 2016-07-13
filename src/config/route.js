@@ -14,7 +14,7 @@ import User from '../containers/User';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
 import MsgList from '../containers/MsgList';
-import DateSelector from '../containers/DateSelector';
+import DateRangeSelector from '../containers/DateRangeSelector';
 
 
 class Main extends Component {
@@ -35,7 +35,7 @@ const route = (
       <Route path="Register" component={Register} />
       <Route path="MsgList" component={MsgList} />
       <Route path="ProductDetail/:productTitle" component={ProductDetail} />
-      <Route path="DateSelector(/:selected)" component={DateSelector} />
+      <Route path="DateRangeSelector(/:selected)" component={DateRangeSelector} />
     </Route>
   </Router>
 );
