@@ -6,11 +6,11 @@
  */
 import WebAPI from '../apis/WebAPI';
 
-import { CALENDAR_SELECTED_CHANGED } from './actionTypes';
+import { CALENDAR_DATE_CHANGED } from './actionTypes';
 
 const selectDate = (data) => {
   return {
-    type: CALENDAR_SELECTED_CHANGED,
+    type: CALENDAR_DATE_CHANGED,
     payload: data
   };
 };

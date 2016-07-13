@@ -27,33 +27,35 @@ class DateSelector extends Component {
 
   dateSelectedCallback(e, day, { selected, disabled }) {
     console.log(this.props.params.selected);
-    const d = day.Format('yyyy-MM-dd');
-    console.log(d);
+    const {key} = this.parseParam(this.props.params.selected);
     const {actions} = this.props;
-    actions.changeDate(d);
+    actions.changeDate({key, selected: day.Format('yyyy-MM-dd')});
     //this.context.router.push(`/Menu/${day.Format('yyyy-MM-dd')}`);
-    this.context.router.push('/Menu');
+    this.context.router.goBack();
   }
 
   // 渲染
   render() {
-    const selected = this.props.params.selected;
+    const {selectedDate} = this.parseParam(this.props.params.selected);
     return (
       <div>
         <Header leftIcon="fanhui" title={'选择日期'} />
-        <Calendar selected={selected} selectedCallback={this.dateSelectedCallback} />
+        <Calendar selected={selectedDate} selectedCallback={this.dateSelectedCallback} />
       </div>
     );
+  }
+
+  parseParam(p) {
+    const arr = p.split('=');
+    return {key: arr[0], selectedDate: arr[1]};
   }
 }
 
 DateSelector.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  store: React.PropTypes.object.isRequired
+  router: React.PropTypes.object.isRequired
 };
 
-export default connect(state =>
-    ({state: state.selected}),
+export default connect(state => ({state: state.sample}),
   (dispatch) => ({
     actions: bindActionCreators({changeDate}, dispatch)
   })

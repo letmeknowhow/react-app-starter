@@ -5,9 +5,9 @@
  *  Description:
  */
 import news from './news';
-import calendar from './calendar';
+import sample from './sample';
 
 export default {
   news,
-  calendar
+  sample
 };

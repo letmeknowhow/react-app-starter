@@ -35,7 +35,7 @@ const route = (
       <Route path="Register" component={Register} />
       <Route path="MsgList" component={MsgList} />
       <Route path="ProductDetail/:productTitle" component={ProductDetail} />
-      <Route path="DateSelector/:selected" component={DateSelector} />
+      <Route path="DateSelector(/:selected)" component={DateSelector} />
     </Route>
   </Router>
 );
