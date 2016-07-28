@@ -11,10 +11,10 @@ import React, { Component } from 'react';
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {changeDate} from '../actions/calendar';
+import {changeDate} from '../../actions/adpublish/calendar';
 
-import Calendar from '../component/Calendar';
-import {Header} from './../component/common/index';
+import Calendar from '../../component/Calendar';
+import {Header} from '../../component/common/index';
 
 class DateRangeSelector extends Component {
   // 构造
@@ -26,10 +26,9 @@ class DateRangeSelector extends Component {
   }
 
   dateSelectedCallback(e, day, { selected, disabled }) {
-    console.log(this.props.params.selected);
-    const {key} = this.parseParam(this.props.params.selected);
+    const {key, pageID} = this.parseParam(this.props.params.selected);
     const {actions} = this.props;
-    actions.changeDate({key, selected: day.Format('yyyy-MM-dd')});
+    actions.changeDate({key, selected: day.Format('yyyy-MM-dd')}, pageID);
     this.context.router.goBack();
   }
 
@@ -45,8 +44,15 @@ class DateRangeSelector extends Component {
   }
 
   parseParam(p) {
-    const arr = p.split('=');
-    return {key: arr[0], selectedDate: arr[1]};
+    let {key, selectedDate, pageID} = {};
+    const data = p.split(';');
+    if (data && data.length === 2) {
+      const arr = data[0].split('=');
+      key = arr[0];
+      selectedDate = arr[1];
+      pageID = data[1];
+    }
+    return {key, selectedDate, pageID};
   }
 }
 

@@ -6,8 +6,14 @@
  */
 import news from './news';
 import sample from './sample';
+import publishAD from './productAD/publishAD';
+import modifyAD from './productAD/modifyAD';
+import listAD from './productAD/listAD';
 
 export default {
   news,
-  sample
+  sample,
+  publishAD,
+  listAD,
+  modifyAD
 };

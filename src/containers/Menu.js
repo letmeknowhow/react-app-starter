@@ -68,24 +68,11 @@ class Menu extends Component {
             <Button style={{height: 100}} type="primary" plain>首页</Button>
           </Link>
           <Link to="/User"><Button style={{height: 50}} type="default" plain>我的1</Button></Link>
-          <Link to="/User"><Button style={{height: 70}} type="default" plain>我的2</Button></Link>
+          <Link to="/PublishAD"><Button style={{height: 70}} type="default" plain>我的2</Button></Link>
         </div>
-        <div style={{width: '90%', backgroundColor: 'gray', margin: 10 }} data-flex="box:first">
-          <div style={{width: 70}} data-flex="box:mean">
-            <div>日期:</div>
-          </div>
-          <div className="value">
-            <Link to={`/DateRangeSelector/start=${startDate}`}>
-              <div ref={s => { this.startDate = s; }}>{startDate}</div>
-            </Link>
-          </div>
-          <div className="value">
-            <Link to={`/DateRangeSelector/end=${endDate}`}>
-              <div ref={e => { this.endDate = e; }}>{endDate}</div>
-            </Link>
-          </div>
-        </div>
+
         <Button style={{height: 100}} type="primary" plain onClick={this.handleClick}>click me</Button>
+        <Link to="/adListPage"><Button style={{height: 70}} type="default" plain>产品发布列表</Button></Link>
       </Page>
     );
   }

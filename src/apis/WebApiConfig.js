@@ -4,66 +4,39 @@
  *  Date: 16/7/9.
  *  Description: 请求配置项
  */
-
-import global from '../config/global';
-
 export default {
   baseurl: '',
   api: [
-    //{
-    //  name: 'login',
-    //  method: 'post',
-    //  url: global.loggedBaseURL + '/api/session',
-    //  desc: '用户登录的接口'
-    //},
-    //{
-    //  name: 'extended',
-    //  method: 'putuser',
-    //  url: global.loggedBaseURL + '/api/session',
-    //  desc: '延长用户session的接口'
-    //},
-    //{
-    //  name: 'banners',
-    //  method: 'get',
-    //  url: global.webApiURL + '/ColumnAjax',
-    //  desc: 'banner查询'
-    //},
-    //{
-    //  name: 'newsColumns',
-    //  method: 'get',
-    //  url: global.webApiURL + '/api/newsColumns',
-    //  desc: '栏目查询'
-    //},
-    //{
-    //  name: 'newsInfos',
-    //  method: 'get',
-    //  url: global.webApiURL + '/api/newsInfos',
-    //  desc: '查询快讯'
-    //},
-    //{
-    //  name: 'newsInfoDetails',
-    //  method: 'getid',
-    //  url: global.webApiURL + '/api/newsInfos/app',
-    //  desc: '查询快讯详情'
-    //},
-    //{
-    //  name: 'appWealthUserInfos',
-    //  method: 'get',
-    //  url: global.loggedBaseURL + '/api/settings/appWealthUserInfos',
-    //  desc: '个人信息查询'
-    //},
-    //{
-    //  name: 'updateGesturePasswords',
-    //  method: 'putuser',
-    //  url: global.webApiURL + '/api/settings/gesturePasswords',
-    //  desc: '修改手势密码'
-    //},
-    //{
-    //  name: 'gesturePasswords',
-    //  method: 'get',
-    //  url: global.webApiURL + '/api/settings/gesturePasswords',
-    //  desc: '查询手势密码'
-    //},
+    {
+      name: 'generateAD',
+      method: 'post',
+      url: 'ajax/advertise/addAdProduct.do',
+      desc: '创建广告'
+    },
+    {
+      name: 'modifyAD',
+      method: 'post',
+      url: 'ajax/advertise/updateAdProduct.do',
+      desc: '修改'
+    },
+    {
+      name: 'getUserInfo',
+      method: 'get',
+      url: 'ajax/advertise/getUserInfo.do',
+      desc: '获取企业用户信息'
+    },
+    {
+      name: 'getADList',
+      method: 'get',
+      url: 'ajax/advertise/getAdProductList.do',
+      desc: '查询广告产品列表'
+    },
+    {
+      name: 'getAdProduct',
+      method: 'get',
+      url: 'ajax/advertise/getAdProduct.do',
+      desc: '查询广告产品详情'
+    },
     {
       name: 'getNews',
       method: 'get',

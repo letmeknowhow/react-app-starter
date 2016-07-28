@@ -7,7 +7,10 @@
 
 export default function createLoggerMiddleware({dispatch, getState}) {
   return next => action => {
-    console.trace();
+    //console.log('当前状态');
+    //console.log(getState());
+    //console.log('action');
+    //console.log(action);
     return next(action);
   };
 }

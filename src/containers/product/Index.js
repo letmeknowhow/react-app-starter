@@ -15,15 +15,24 @@ import {Link} from 'react-router';
  */
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getNews} from '../../actions/news';
+import {getNews, startLoading, setNewsScrollTop} from '../../actions/news';
 
-import Infinite from 'react-infinite';
+import { VirtualScroll } from 'react-virtualized';
+import 'react-virtualized/styles.css'; // only needs to be imported once
+
+import WeUI from 'react-weui';
+import 'weui';
+
+const {Toast} = WeUI;
+
 
 /*
  公共react组件
  */
 import {Header, Footer, Loading} from '../../component/common/index';
 
+//行高
+const ROW_HEIGHT = 229;
 /*
  相关的模块调用
  */
@@ -32,46 +41,39 @@ import {Header, Footer, Loading} from '../../component/common/index';
  组件入口文件
  */
 class Index extends Component {
+
   constructor(props) {
     super(props);
-    this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
+    this.state = {
+      getNewsTimer: null
+    };
+    this.noRowsRenderer = this.noRowsRenderer.bind(this);
+    this.rowRenderer = this.rowRenderer.bind(this);
+    this.handlScroll = this.handlScroll.bind(this);
   }
 
   render() {
-    const { state } = this.props;
-    let main = state.list.map((article, index) => {
-      return (
-        <Article
-          key={index}
-          article={article}
-        />
-      );
-    });
-
-    let index = 0;
-    let leftTo = null;
-    let leftIcon = null;
-
+    const { state: { list, scrollTop, isLoading } } = this.props;
 
     return (
       <div>
-        <Header leftTo={leftTo} leftIcon={leftIcon} title={'新闻列表'} />
-        <Infinite
-          elementHeight={229}
-          containerHeight={document.body.clientHeight - 100}
-          onInfiniteLoad={this.handleInfiniteLoad}
-          loadingSpinnerDelegate={this.elementInfiniteLoad()}
-          infiniteLoadBeginEdgeOffset={50}
-          isInfiniteLoading={state.isLoading}
-        >
-          {main}
-        </Infinite>
-        <Footer index={index} />
+        <Header leftTo={null} leftIcon={null} title={'新闻列表'} />
+        <VirtualScroll
+          ref="VirtualScroll"
+          height={document.body.clientHeight - 85}
+          overscanRowCount={3}
+          noRowsRenderer={this.noRowsRenderer}
+          rowCount={list.length}
+          rowHeight={ROW_HEIGHT}
+          rowRenderer={this.rowRenderer}
+          scrollTop={scrollTop}
+          width={document.body.clientWidth}
+          onScroll={this.handlScroll}
+        />
+        <Toast icon="loading" show={isLoading}>正在加载中...</Toast>
+        <Footer index={0} />
       </div>
     );
-  }
-
-  componentDidMount() {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -80,21 +82,64 @@ class Index extends Component {
     return nextProps.state != this.props.state;
   }
 
-  elementInfiniteLoad() {
+  componentDidMount() {
+    const {state, actions} = this.props;
+    if (state.list.length > 0) {
+      return;
+    } else {
+      actions.getNews({columnId: 784});
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.actions.setNewsScrollTop(this.scrollTop);
+    if (this.state.getNewsTimer) clearTimeout(this.state.getNewsTimer);
+  }
+
+  noRowsRenderer() {
     return (
-      <div data-flex="box:mean">
-        正在加载...
+      <div>
+        没有数据
       </div>
     );
   }
 
+  handlScroll({clientHeight, scrollHeight, scrollTop}) {
+    this.scrollTop = scrollTop;
+    if (scrollHeight - clientHeight - scrollTop < 50) {
+      this.handleInfiniteLoad();
+    }
+  }
+
+  rowRenderer({ index, isScrolling }) {
+    if (isScrolling) {
+      return (
+        <div>
+          <span>
+            Scrolling...
+          </span>
+        </div>
+      );
+    }
+
+    const { state } = this.props;
+    return (
+      <Article
+        key={index}
+        index={index}
+        article={state.list[index]}
+      />
+    );
+  }
+
   handleInfiniteLoad() {
-    console.log('handleInfiniteLoad');
-    const me = this;
-    const {actions} = me.props;
-    setTimeout(() => {
+    const {state, actions} = this.props;
+    if (state.isLoading) return;
+
+    actions.startLoading();
+    this.state.getNewsTimer = setTimeout(() => {
       actions.getNews({columnId: 784});
-    }, 2500);
+    }, 1000);
   }
 }
 
@@ -103,9 +148,8 @@ class Index extends Component {
  */
 class Article extends Component {
   render() {
-    const { article } = this.props;
-    let {id, bookTitle, bookContent, bookClick, bookImg } = article;
-    bookContent = `${bookContent.substring(0, 50)}...`;
+    const { article: {id, bookTitle, bookContent, bookClick, bookImg} } = this.props;
+    const content = `${bookContent.substring(0, 50)}...`;
     let images = null;
     if (/^http/.test(bookImg)) {
       images = (
@@ -118,10 +162,10 @@ class Article extends Component {
     }
     return (
       <li>
-        <Link to={`/ProductDetail/${bookTitle}`}>
+        <Link to={`/ProductDetail/${bookTitle}`} >
           {images}
           <h3>{bookTitle}</h3>
-          <div className="content">{bookContent}</div>
+          <div className="content">{content}</div>
 
           <div className="bottom" data-flex="main:justify">
             <div className="click">阅读：{bookClick}</div>
@@ -136,6 +180,6 @@ class Article extends Component {
 export default connect(state =>
     ({state: state.news}),
   (dispatch) => ({
-    actions: bindActionCreators({getNews}, dispatch)
+    actions: bindActionCreators({getNews, startLoading, setNewsScrollTop}, dispatch)
   })
 )(Index);

@@ -30,5 +30,5 @@ react
 | 模块   |      说明
 |----------|:-------------:|
 | [react-weui](https://github.com/weui/react-weui) | 由微信官方设计团队为微信 Web 开发量身设计
-| [react-infinite](https://github.com/seatgeek/react-infinite) | 列表组件
+| [react-virtualized](https://github.com/bvaughn/react-virtualized) | 包含很多非常棒的容器类组件比如VirtualScroll,Grid等
 | [flex-css-layout](https://github.com/1340641314/flex-css-layout) | 弹性盒布局

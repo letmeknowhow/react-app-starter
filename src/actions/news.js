@@ -19,19 +19,33 @@ const getNewsSuccess = (data) => {
     payload: data
   };
 };
-const loadingNews = (data) => {
+
+const getNewsFailure = () => {
   return {
-    type: NEWS_LOADING,
+    type: NEWS_FAILURE
+  };
+};
+
+const loadingNews = () => {
+  return {
+    type: NEWS_LOADING
+  };
+};
+
+const scrollNews = (data) => {
+  return {
+    type: NEWS_SETSCROLL,
     payload: data
   };
 };
-// 异步请求财富列表数据
+
+// 异步请求新闻列表数据
 export function getNews(opts) {
   return (dispatch, getState) => {
     /**
      * http请求远程图片
      */
-    dispatch(loadingNews(getState().news.list));
+    const oriData = getState().news.list;
     //WebAPI.getNews(opts)
     //  .then((data) => {
     //    const bannerList = data.json.columnIssueList;
@@ -44,9 +58,13 @@ export function getNews(opts) {
     //        bookClick: 343
     //      };
     //    });
-    //    dispatch(getNewsSuccess(news));
+    //    dispatch(getNewsSuccess(oriData.concat(news)));
+    //  })
+    //  .catch(() => {
+    //    console.log('获取新闻列表失败!');
+    //    dispatch(getNewsFailure());
     //  });
-    const oriData = getState().news.list;
+
     const newData = oriData.concat([
       {id: '1', bookImg: pic1, bookTitle: '桑拿, 蒸腾芬兰', bookContent: '你好,欢迎加入港中旅1', bookClick: 343},
       {id: '2', bookImg: pic2, bookTitle: '伦敦, 新西区时代', bookContent: '你好,欢迎加入港中旅', bookClick: 343},
@@ -54,5 +72,17 @@ export function getNews(opts) {
       {id: '4', bookImg: pic4, bookTitle: '曼哈顿, 文艺彻骨', bookContent: '你好,欢迎加入港中旅', bookClick: 343}
     ]);
     dispatch(getNewsSuccess(newData));
+  };
+}
+
+export function startLoading() {
+  return (dispatch, getState) => {
+    dispatch(loadingNews());
+  };
+}
+
+export function setNewsScrollTop(top) {
+  return (dispatch, getState) => {
+    dispatch(scrollNews(top));
   };
 }

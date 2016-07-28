@@ -24,8 +24,7 @@ class User extends Component {
         <div className="user">
           <div className="head">
             <div className="headimg" data-flex="dir:top main:center cross:center">
-              <div
-                className="pictrue" style={{ backgroundImage: 'url(http://vpic.video.qq.com/4252003160/t0156a0xb39_ori_1.jpg)' }}>
+              <div className="pictrue">
               </div>
               <div className="name">中旅总社</div>
             </div>
@@ -100,7 +99,7 @@ class User extends Component {
             </li>
           </ul>
         </div>
-        <Footer index="2" />
+        <Footer index="3" />
       </div>
     );
   }

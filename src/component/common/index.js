@@ -12,6 +12,14 @@ import PureComponent from '../PureComponent';
  全局公共头部
  */
 export class Header extends PureComponent {
+  // 构造
+  constructor(props) {
+    super(props);
+    // 初始状态
+    this.state = {};
+    this.goBack = this.goBack.bind(this);
+  }
+
   render() {
     let {title, leftTo, leftIcon, rightTo, rightIcon } = this.props;
     let left = null;
@@ -24,7 +32,7 @@ export class Header extends PureComponent {
       );
     } else if (leftIcon === 'fanhui') { //返回上一页
       left = (
-        <a onClick={this.context.router.goBack}>
+        <a onClick={this.goBack}>
           <i className={`iconfont icon-${leftIcon}`}></i>
         </a>
       );
@@ -34,7 +42,7 @@ export class Header extends PureComponent {
 
     if (rightTo && rightIcon) {
       right = (
-        <Link to={rightTo}>
+        <Link to={rightTo} >
           <i className={`iconfont icon-${rightIcon}`}></i>
         </Link>
       );
@@ -51,6 +59,13 @@ export class Header extends PureComponent {
         </div>
       </header>
     );
+  }
+
+  goBack() {
+    if (this.props.goBackCallback && typeof this.props.goBackCallback === 'function') {
+      this.props.goBackCallback();
+    }
+    this.context.router.goBack();
   }
 }
 Header.contextTypes = {
@@ -88,6 +103,11 @@ export class Footer extends PureComponent {
             </Link>
           </li>
           <li className={arr[2]}>
+            <Link to="/adListPage">
+              <i className="iconfont icon-gerenzhongxin"></i>广告
+            </Link>
+          </li>
+          <li className={arr[3]}>
             <Link to="/User">
               <i className="iconfont icon-gerenzhongxin"></i>我的
             </Link>

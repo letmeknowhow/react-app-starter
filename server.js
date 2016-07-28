@@ -37,8 +37,14 @@ const config = require('./webpack.dev.config');
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true
-}).listen(3000, 'localhost', (err, result) => {
+  historyApiFallback: true,
+  proxy: {
+    '/ajax/*': {
+      target: 'http://192.168.8.235:8080',
+      secure: false
+    }
+  }
+}).listen(3000, '0.0.0.0', (err, result) => {
   if (err) {
     return console.log(err);
   }

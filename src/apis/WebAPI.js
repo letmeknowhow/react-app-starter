@@ -8,7 +8,6 @@
 //'use strict';
 require('regenerator/runtime');
 import 'whatwg-fetch';
-import _ from 'lodash';
 import config from './WebApiConfig';
 
 
@@ -19,13 +18,13 @@ class WebAPI {
   }
 
   /** 网络异常处理*/
-  catchHandle(ex) {
-    throw ex;
+  catchHandle(opts) {
+    console.log(`请求异常: ${opts.url}`);
   }
 
   // fetch 的核心方法
   async innerFetch(opts1) {
-    let opts = _.extend({
+    let opts = Object.assign({
       method: 'GET',
       url: null,
       body: null,
@@ -54,31 +53,39 @@ let responseResolve = async (response) => {
   let json = {};
   let backJson = {
     json: {},
-    response
+    success: false,
+    errorMessage: ''
   };
   if (response.ok) {
     try {
-      return await response.json().then((responseJson) => {
-        json = responseJson.response;
-        backJson.json = json;
-        return backJson;
+      backJson = await response.json().then((responseJson) => {
+        let res = Object.assign({}, backJson);
+        if (responseJson.success) {
+          res.success = true;
+          if (typeof responseJson.data === 'string') {
+            json = JSON.parse(responseJson.data);
+          } else {
+            json = responseJson.data;
+          }
+        } else {
+          res.errorMessage = responseJson.message;
+        }
+        res.json = json;
+        return res;
       });
     } catch (ex) {
-      console.error('尝试解析json时失败:  WebApi.js');
+      console.error(`尝试解析json时失败: ${response.url}`);
     }
-
   }
   if (response.status === 403 || response.status === 401) {
     try {
-      // 清除本地token
-      //webApi.actions.deleteSessionToken();
-      console.log('403');
+      console.log(response.status);
     }
     catch (ex) {
-      console.error('清除本地token失败:  WebApi.js');
+      console.error(`清除本地token失败: ${response.url}`);
     }
   }
-  return null;
+  return backJson;
 };
 
 
@@ -109,8 +116,7 @@ let getRequest = (opts) => {
         url: `${opts.url}?${formBody}`
       }).then(responseResolve);
     } catch (e) {
-
-      this.catchHandle();
+      this.catchHandle(opts);
       throw e;
     }
   };
@@ -124,7 +130,6 @@ let putRequest = (opts) => {
         body: data
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }
@@ -138,7 +143,6 @@ let deleteRequest = (opts) => {
         url: `${opts.url}/${id}`
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }
@@ -154,7 +158,6 @@ let putStatusRequest = (opts) => {
         body: data
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }
@@ -169,7 +172,6 @@ let putUserRequest = (opts) => {
         body: data
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }
@@ -190,7 +192,6 @@ let getIdRequest = (opts) => {
         url: `${opts.url}/${id}?${formBody}`
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }
@@ -205,7 +206,6 @@ let putTwoRequest = (opts) => {
         body: data
       }).then(responseResolve);
     } catch (e) {
-
       this.catchHandle();
       throw e;
     }

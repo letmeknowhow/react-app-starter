@@ -14,8 +14,11 @@ import User from '../containers/User';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
 import MsgList from '../containers/MsgList';
-import DateRangeSelector from '../containers/DateRangeSelector';
-
+import SelectCity from '../containers/adpublish/SelectCity';
+import PublishAD from '../containers/adpublish/PublishAD';
+import ModifyAD from '../containers/adpublish/ModifyAD';
+import DateRangeSelector from '../containers/adpublish/DateRangeSelector';
+import ListPage from '../containers/adpublish/ListPage';
 
 class Main extends Component {
   render() {
@@ -27,15 +30,20 @@ class Main extends Component {
 const route = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
-      <IndexRoute component={ProductList} />
+      <IndexRoute component={ListPage} />
+      <Route path="ProductDetail/:productTitle" component={ProductDetail} />
+      <Route path="ProductList" component={ProductList} />
       <Route path="Menu" component={Menu} />
       <Route path="About" component={About} />
       <Route path="User" component={User} />
       <Route path="Login" component={Login} />
       <Route path="Register" component={Register} />
       <Route path="MsgList" component={MsgList} />
-      <Route path="ProductDetail/:productTitle" component={ProductDetail} />
+      <Route path="PublishAD" component={PublishAD} />
+      <Route path="ModifyAD/:productID" component={ModifyAD} />
+      <Route path="SelectCity(/:placeType)" component={SelectCity} />
       <Route path="DateRangeSelector(/:selected)" component={DateRangeSelector} />
+      <Route path="adListPage" component={ListPage} />
     </Route>
   </Router>
 );
