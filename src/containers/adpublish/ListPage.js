@@ -9,17 +9,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { VirtualScroll } from 'react-virtualized';
-import 'react-virtualized/styles.css'; // only needs to be imported once
+import GetNext from '../../lib/GetNext';
 
-import WeUI from 'react-weui';
-import 'weui';
-const {Toast} = WeUI;
-
-import {Header} from '../../component/common/index';
+import {Header, Loading} from '../../component/common/index';
 import '../../css/ListPage.less';
 
-import {getADList, setADListScrollTop, startLoadingADList} from '../../actions/adpublish/home';
+import {getADList, startLoading} from '../../actions/adpublish/home';
 
 //行高
 const ROW_HEIGHT = 70;
@@ -29,17 +24,16 @@ const PAGE_ID = 'ADList';
 class ListPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      getListTimer: null
-    };
-    this.noRowsRenderer = this.noRowsRenderer.bind(this);
-    this.rowRenderer = this.rowRenderer.bind(this);
-    this.handlScroll = this.handlScroll.bind(this);
   }
 
   render() {
-    const { state: { list, scrollTop, isLoading } } = this.props;
-
+    const { state: { list, loadMsg, loadState } } = this.props;
+    console.log('loadState: ' + loadState);
+    console.log(list.length);
+    if (loadState != 0) this.loading = false;
+    const adList = list.map((item, index) => {
+      return (<ADItem key={index} index={index} productItem={item} />);
+    });
     return (
       <div className="list-page-bg">
         <Header leftTo={null} leftIcon={null} title={'我发布的广告'} />
@@ -50,19 +44,10 @@ class ListPage extends Component {
             </Link>
           </div>
         </div>
-        <VirtualScroll
-          ref="VirtualScroll"
-          height={document.body.clientHeight - (35 + 15 + 31)}   //35为header高度, 31正价产品按钮高度,15间隔
-          overscanRowCount={3}
-          noRowsRenderer={this.noRowsRenderer}
-          rowCount={list.length}
-          rowHeight={ROW_HEIGHT}
-          rowRenderer={this.rowRenderer}
-          scrollTop={scrollTop}
-          width={document.body.clientWidth}
-          onScroll={this.handlScroll}
-        />
-        <Toast icon="loading" show={isLoading}>正在加载中...</Toast>
+        <ul>
+          {adList}
+        </ul>
+        <div ref="dataload"><Loading loadState={loadState} loadMsg={loadMsg} /></div>
       </div>
     );
   }
@@ -75,52 +60,24 @@ class ListPage extends Component {
 
   componentDidMount() {
     const {state, actions} = this.props;
-    if (state.list.length > 0) {
-      return;
-    } else {
-      actions.getADList(PAGE_ID);
-    }
+    //if (state.list.length > 0) {
+    //  return;
+    //} else {
+    //  actions.getADList(PAGE_ID);
+    //}
+
+    this.getNext = new GetNext(this.refs.dataload, {
+      getNextData: (el) => { //开始加载
+        if (this.loading) return;
+        this.loading = true;
+        actions.startLoading();
+        actions.getADList();
+      }
+    });
   }
 
   componentWillUnmount() {
-    this.props.actions.setADListScrollTop(this.scrollTop, PAGE_ID);
-    if (this.state.getListTimer) clearTimeout(this.state.getListTimer);
-  }
-
-  noRowsRenderer() {
-    return (
-      <div>
-        没有数据
-      </div>
-    );
-  }
-
-  handlScroll({clientHeight, scrollHeight, scrollTop}) {
-    if (scrollHeight - clientHeight - scrollTop < 50 && (this.scrollTop - scrollTop) < 5) {
-      this.handleInfiniteLoad();
-    }
-    this.scrollTop = scrollTop;
-  }
-
-  rowRenderer({ index, isScrolling }) {
-    const { state } = this.props;
-    return (
-      <ADItem
-        key={index}
-        index={index}
-        productItem={state.list[index]}
-      />
-    );
-  }
-
-  handleInfiniteLoad() {
-    const {state, actions} = this.props;
-    if (state.isLoading) return;
-
-    actions.startLoadingADList(PAGE_ID);
-    this.state.getListTimer = setTimeout(() => {
-      actions.getADList(PAGE_ID);
-    }, 1000);
+    if (this.getNext) this.getNext.end();
   }
 }
 
@@ -151,6 +108,6 @@ class ADItem extends Component {
 export default connect(state =>
     ({state: state.listAD}),
   (dispatch) => ({
-    actions: bindActionCreators({getADList, setADListScrollTop, startLoadingADList}, dispatch)
+    actions: bindActionCreators({getADList, startLoading}, dispatch)
   })
 )(ListPage);

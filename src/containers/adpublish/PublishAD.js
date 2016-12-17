@@ -46,7 +46,6 @@ class PublishAD extends Component {
     this.getUserInfo();
   }
   componentDidMount() {
-
     this.setScrollTop();
   }
 

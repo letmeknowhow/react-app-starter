@@ -28,7 +28,7 @@ class Main extends Component {
   }
 }
 const route = (
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={ListPage} />
       <Route path="ProductDetail/:productTitle" component={ProductDetail} />

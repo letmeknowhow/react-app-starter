@@ -13,10 +13,9 @@ import {
   AD_INPUT_CHANGED,
   AD_LIST_SUCCESS,
   AD_LIST_FAILURE,
-  AD_LIST_SETSCROLL,
-  AD_LIST_LOADING,
   AD_GET_DETAIL_SUCCESS,
-  AD_GET_DETAIL_FAILURE
+  AD_GET_DETAIL_FAILURE,
+  AD_LIST_LOADING
 } from '../actionTypes';
 
 const dispathSubmitSuccess = (pageID) => {
@@ -86,183 +85,269 @@ export function inputChanged(opts, pageID) {
 /**
  * 广告产品列表
  */
-const dispathGetADListSuccess = (data, pageID) => {
+const dispathGetADListSuccess = (data) => {
   return {
     type: AD_LIST_SUCCESS,
-    payload: data,
-    pageID
+    payload: data
   };
 };
-const dispathGetADListFailure = (pageID) => {
+const dispathGetADListFailure = () => {
   return {
-    type: AD_LIST_FAILURE,
-    pageID
+    type: AD_LIST_FAILURE
   };
 };
 
-export function getADList(pageID) {
-  return (dispatch) => {
-    WebAPI.getADList()
-      .then((data) => {
-        if (data.success) {
-          const list = data.json;
-          let ads = list.map((item, ind) => {
-            return {
-              id: item.id,
-              name: item.name,
-              tagType: item.tagType,
-              price: item.price,
-              departure: item.departure,
-              destination: item.destination,
-              productPresent: item.productPresent,
-              commissionPolicy: item.commissionPolicy
-            };
-          });
-          dispatch(dispathGetADListSuccess(ads, pageID));
-        } else {
-          console.log('获取广告产品列表失败!');
-          console.log(data.errorMessage);
-          dispatch(dispathGetADListFailure(pageID));
-        }
-      })
-      .catch(() => {
-        console.log('获取广告产品列表失败!');
-        dispatch(dispathGetADListFailure(pageID));
-      });
-    //const oriData = getState().listAD.list;
-    //const newData = oriData.concat([
-    //  {
-    //    'id': 61,
-    //    'name': '123',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': null,
-    //    'validityPeriod': null,
-    //    'tagType': '出境游',
-    //    'price': '123',
-    //    'commissionPolicy': '123',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1469176023000,
-    //    'productNumber': null,
-    //    'departure': '123',
-    //    'destination': '123',
-    //    'productPresent': '123',
-    //    'productHfLibraryPictures': null
-    //  }, {
-    //    'id': 62,
-    //    'name': '火星终身游',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': 1469116800000,
-    //    'validityPeriod': 1469116800000,
-    //    'tagType': '出境游',
-    //    'price': '1000000',
-    //    'commissionPolicy': '123',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1469180750000,
-    //    'productNumber': null,
-    //    'departure': '北京',
-    //    'destination': '澳大利亚',
-    //    'productPresent': '123',
-    //    'productHfLibraryPictures': null
-    //  }, {
-    //    'id': 63,
-    //    'name': '水星游',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': 1469203200000,
-    //    'validityPeriod': 1469894400000,
-    //    'tagType': '出境游',
-    //    'price': '222',
-    //    'commissionPolicy': '222',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1469181307000,
-    //    'productNumber': null,
-    //    'departure': '北京',
-    //    'destination': '柬埔寨',
-    //    'productPresent': '222',
-    //    'productHfLibraryPictures': null
-    //  }, {
-    //    'id': 64,
-    //    'name': '手机测试',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': 1469203200000,
-    //    'validityPeriod': 1469894400000,
-    //    'tagType': '出境游',
-    //    'price': '123',
-    //    'commissionPolicy': '测试',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1469182690000,
-    //    'productNumber': null,
-    //    'departure': '北京',
-    //    'destination': '印度',
-    //    'productPresent': '测试',
-    //    'productHfLibraryPictures': null
-    //  }, {
-    //    'id': 21,
-    //    'name': '海南一日游',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': 1468512000000,
-    //    'validityPeriod': 1468598400000,
-    //    'tagType': '2',
-    //    'price': '10000',
-    //    'commissionPolicy': '1500',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1468575315000,
-    //    'productNumber': null,
-    //    'departure': '北京',
-    //    'destination': '海南',
-    //    'productPresent': '来一场说走就走的旅行，领略海南不一样的韵味！',
-    //    'productHfLibraryPictures': null
-    //  }, {
-    //    'id': 81,
-    //    'name': '123',
-    //    'userId': '1000000019859',
-    //    'begValidityPeriod': 1469116800000,
-    //    'validityPeriod': 1469116800000,
-    //    'tagType': '出境游',
-    //    'price': '123',
-    //    'commissionPolicy': '123',
-    //    'erpProductId': null,
-    //    'externalLink': null,
-    //    'createDate': 1469203262000,
-    //    'productNumber': null,
-    //    'departure': '123',
-    //    'destination': '123',
-    //    'productPresent': '123',
-    //    'productHfLibraryPictures': null
-    //  }
-    //]);
-    //dispatch(dispathGetADListSuccess(newData));
+export function getADList() {
+  return (dispatch, getState) => {
+    //WebAPI.getADList()
+    //  .then((data) => {
+    //    if (data.success) {
+    //      const list = data.json;
+    //      let ads = list.map((item, ind) => {
+    //        return {
+    //          id: item.id,
+    //          name: item.name,
+    //          tagType: item.tagType,
+    //          price: item.price,
+    //          departure: item.departure,
+    //          destination: item.destination,
+    //          productPresent: item.productPresent,
+    //          commissionPolicy: item.commissionPolicy
+    //        };
+    //      });
+    //      dispatch(dispathGetADListSuccess(ads, pageID));
+    //    } else {
+    //      console.log('获取广告产品列表失败!');
+    //      console.log(data.errorMessage);
+    //      dispatch(dispathGetADListFailure(pageID));
+    //    }
+    //  })
+    //  .catch(() => {
+    //    console.log('获取广告产品列表失败!');
+    //    dispatch(dispathGetADListFailure(pageID));
+    //  });
+    const oriData = getState().listAD.list;
+    const newData = oriData.concat([
+      {
+        'id': 61,
+        'name': '123',
+        'userId': '1000000019859',
+        'begValidityPeriod': null,
+        'validityPeriod': null,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469176023000,
+        'productNumber': null,
+        'departure': '123',
+        'destination': '123',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 62,
+        'name': '火星终身游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469116800000,
+        'validityPeriod': 1469116800000,
+        'tagType': '出境游',
+        'price': '1000000',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469180750000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '澳大利亚',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 63,
+        'name': '水星游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469203200000,
+        'validityPeriod': 1469894400000,
+        'tagType': '出境游',
+        'price': '222',
+        'commissionPolicy': '222',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469181307000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '柬埔寨',
+        'productPresent': '222',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 64,
+        'name': '手机测试',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469203200000,
+        'validityPeriod': 1469894400000,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '测试',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469182690000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '印度',
+        'productPresent': '测试',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 21,
+        'name': '海南一日游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1468512000000,
+        'validityPeriod': 1468598400000,
+        'tagType': '2',
+        'price': '10000',
+        'commissionPolicy': '1500',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1468575315000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '海南',
+        'productPresent': '来一场说走就走的旅行，领略海南不一样的韵味！',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 81,
+        'name': '123',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469116800000,
+        'validityPeriod': 1469116800000,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469203262000,
+        'productNumber': null,
+        'departure': '123',
+        'destination': '123',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      },
+      {
+        'id': 61,
+        'name': '123',
+        'userId': '1000000019859',
+        'begValidityPeriod': null,
+        'validityPeriod': null,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469176023000,
+        'productNumber': null,
+        'departure': '123',
+        'destination': '123',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 62,
+        'name': '火星终身游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469116800000,
+        'validityPeriod': 1469116800000,
+        'tagType': '出境游',
+        'price': '1000000',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469180750000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '澳大利亚',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 63,
+        'name': '水星游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469203200000,
+        'validityPeriod': 1469894400000,
+        'tagType': '出境游',
+        'price': '222',
+        'commissionPolicy': '222',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469181307000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '柬埔寨',
+        'productPresent': '222',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 64,
+        'name': '手机测试',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469203200000,
+        'validityPeriod': 1469894400000,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '测试',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469182690000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '印度',
+        'productPresent': '测试',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 21,
+        'name': '海南一日游',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1468512000000,
+        'validityPeriod': 1468598400000,
+        'tagType': '2',
+        'price': '10000',
+        'commissionPolicy': '1500',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1468575315000,
+        'productNumber': null,
+        'departure': '北京',
+        'destination': '海南',
+        'productPresent': '来一场说走就走的旅行，领略海南不一样的韵味！',
+        'productHfLibraryPictures': null
+      }, {
+        'id': 81,
+        'name': '123',
+        'userId': '1000000019859',
+        'begValidityPeriod': 1469116800000,
+        'validityPeriod': 1469116800000,
+        'tagType': '出境游',
+        'price': '123',
+        'commissionPolicy': '123',
+        'erpProductId': null,
+        'externalLink': null,
+        'createDate': 1469203262000,
+        'productNumber': null,
+        'departure': '123',
+        'destination': '123',
+        'productPresent': '123',
+        'productHfLibraryPictures': null
+      }
+    ]);
+    dispatch(dispathGetADListSuccess(newData));
   };
 }
 
-const dispathSetADListScrollTop = (data, pageID) => {
+const dispathStartLoading = () => {
   return {
-    type: AD_LIST_SETSCROLL,
-    payload: data,
-    pageID
+    type: AD_LIST_LOADING
   };
 };
 
-export function setADListScrollTop(top, pageID) {
+export function startLoading() {
   return (dispatch) => {
-    dispatch(dispathSetADListScrollTop(top, pageID));
-  };
-}
-
-const dispathStartLoadingADList = (pageID) => {
-  return {
-    type: AD_LIST_LOADING,
-    pageID
-  };
-};
-
-export function startLoadingADList(pageID) {
-  return (dispatch) => {
-    dispatch(dispathStartLoadingADList(pageID));
+    dispatch(dispathStartLoading());
   };
 }
 
