@@ -1,0 +1,83 @@
+{
+  "enabled": true,
+  "value": "success",
+  "success": {
+    "flag": "0",
+    "msg": [],
+    "data": [
+      {
+        "id": "185715847_4",
+				"name": "test20140809",
+				"childAmount": 9,
+				"canUnFold": true,
+				"property": {
+					"id": 185045940,
+					"idType": 1
+				},
+        "children": [
+          {
+						"id": "11111111_1",
+						"name": "test20140809_g24",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": false
+					},
+					{
+						"id": "11111111_2",
+						"name": "test20140809_g25",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": false
+					},
+					{
+						"id": "11111111_3",
+						"name": "test20140809_g22",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": false
+					},
+					{
+						"id": "11111111_4",
+						"name": "test20140809_g23",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": false
+					},
+					{
+						"id": "11111111_5",
+						"name": "test20140809_g20",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": false
+					},
+					{
+						"id": "11111111_6",
+						"name": "test20140809_g21",
+						"canUnFold": false,
+						"property": {
+							"isExistFlag": false
+						},
+            "isSelected": true
+					}
+        ]
+      }
+    ]
+  },
+  "error": {
+    "flag": "1",
+    "msg": [
+      "input error"
+    ],
+    "data": []
+  }
+}

@@ -1,0 +1,9 @@
+.wrap-box{padding:0 15px}
+.page-wrap { 
+    margin-top: 10px; 
+    height: 35px; 
+    position: relative;}
+.sel-width { width: 60px; }
+.page-l-wrap { float: left; }
+.page-r-wrap { float: right; }
+.mt {display: inline-block;margin-top: 5px;}

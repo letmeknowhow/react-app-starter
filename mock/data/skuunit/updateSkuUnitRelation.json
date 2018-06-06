@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "value": "success",
+  "success": {
+    "flag": "0",
+    "msg": [
+      "修改失败"
+    ],
+    "data": [
+      {
+        "skuUnitId": "185715847_1",
+        "groupCount": 8,
+        "planCount": 4
+      }
+    ]
+  },
+  "error": {
+    "flag": "1",
+    "msg": [
+      "input error"
+    ],
+    "data": []
+  }
+}

@@ -1,0 +1,106 @@
+.loading{
+    position: fixed;
+    height: 100%;
+    width:100%;
+    z-index:99;
+}
+.loading-wrapper{
+    overflow: hidden;
+    opacity: .7;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.loading-tip{
+    min-height: 88px;
+    width:100%;
+}
+
+.loading-noNested{
+    position: relative;
+}
+.size-default{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 120px 100px;
+    width: 120px;
+    height:100px;
+}
+.size-small{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 90px 70px;
+    width: 90px;
+    height:70px;
+}
+.size-large{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 150px 120px;
+    width: 150px;
+    height:120px;
+}
+.size-default-table{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 120px 100px;
+    width: 120px;
+    height:100px;
+    margin-top: -110px;
+}
+.size-small-table{
+    position: absolute;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    top:0;
+    background-size: 90px 70px;
+    width: 90px;
+    height:70px;
+}
+.size-large-table{
+    position: absolute;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    top: 123px;
+    background-size: 150px 120px;
+    width: 150px;
+    height:120px;
+}
+.size-small-noNested{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 90px 70px;
+    width: 90px;
+    height:70px;
+    position: relative;
+}
+.size-default-noNested{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 120px 100px;
+    width: 120px;
+    height:100px;
+    position: relative;
+}
+.size-large-noNested{
+    position: absolute;
+    top:50%;
+    left: 45%;
+    background: url(./img/loading-local.gif) no-repeat 0 0;
+    background-size: 150px 120px;
+    width: 150px;
+    height:120px;
+    position: relative;
+}

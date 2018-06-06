@@ -1,0 +1,93 @@
+{
+  "enabled": true,
+  "value": "success",
+  "success": {
+    "flag": "0",
+    "msg": [],
+    "data": [
+      {
+        "id": "416384_0",
+        "name": "416384",
+        "childAmount": 297,
+        "canUnFold": true,
+        "property": {
+          "id": 416384,
+          "idType": 0
+        },
+        "children": [
+          {
+            "id": "185715847_1",
+            "name": "0_test111",
+            "childAmount": 1000,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "selectedChildCount": 3,
+            "children": [
+              {
+                "id": "11111111_1",
+                "name": "test20140809_g24",
+                "canUnFold": false,
+                "property": {
+                  "isExistFlag": false
+                }
+              },
+              {
+                "id": "11111111_2",
+                "name": "test20140809_g25",
+                "canUnFold": false,
+                "property": {
+                  "isExistFlag": false
+                }
+              },
+              {
+                "id": "11111111_3",
+                "name": "test20140809_g22",
+                "canUnFold": false,
+                "property": {
+                  "isExistFlag": false
+                }
+              }
+            ]
+          },
+          {
+            "id": "185715847_2",
+            "name": "test0312",
+            "childAmount": 1,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "selectedChildCount": 2,
+            "children": [
+              {
+                "id": "11111111_4",
+                "name": "test20140809_g24",
+                "canUnFold": false,
+                "property": {
+                  "isExistFlag": false
+                }
+              },
+              {
+                "id": "11111111_5",
+                "name": "test20140809_g25",
+                "canUnFold": false,
+                "property": {
+                  "isExistFlag": false
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "error": {
+    "flag": "1",
+    "msg": [
+      "input error"
+    ],
+    "data": []
+  }
+}

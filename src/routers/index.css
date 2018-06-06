@@ -1,0 +1,17 @@
+.main-layout{margin:10px;background:#FFFFFF;border:1px solid #D6D7D8;}
+
+/* 筛选模块样式 */
+.condition-box{padding:15px 15px 5px;font-size:12px;}
+.condition-list{line-height:32px;margin-bottom:10px;}
+.condition-list-small{line-height:26px;margin-bottom:5px;}
+.condition-title{display:inline-block;margin-right:5px;}
+.condition-label{display:inline-block;margin:0 10px 0 0;}
+
+
+/* 抽屉内部样式 */
+
+.coverage-title{
+	font-size:16px;
+	line-height:26px;
+	margin-top:-10px;
+}

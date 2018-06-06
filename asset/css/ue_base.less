@@ -1,0 +1,254 @@
+body {
+	background-color: @body-bg !important; 
+	font: @font-size-base @font-family-base;
+	line-height: @line-height-computed;
+	min-width: 1100px;
+}
+// Reset fonts for relevant elements
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+// Links
+a {
+	color: @link-color;
+	text-decoration: none;
+	&:link,&:visited,&:focus{
+		color: @link-color;
+		.t-n(none);
+	}
+	&:focus{
+		.t-n(none) !important;
+	}
+	/* 
+	&:hover{
+		color: @link-hover-color;
+	}
+	&:focus {
+		.tab-focus();
+	} */
+}
+figure {
+	margin: 0;
+}
+// Images
+
+img {
+	vertical-align: middle;
+}
+// Floats
+// -------------------------
+.clearfix {
+	.clearfix();
+}
+.pos-r {
+	.pos(r);
+}
+.pos-a {
+	.pos(a);
+}
+.pos-a {
+	.pos(f);
+}
+.fl {
+	.fl();
+}
+.fr {
+	.fr();
+}
+.hide {
+	display: none !important;
+}
+.show {
+	display: block !important;
+}
+.invisible {
+	visibility: hidden;
+}
+.text-hide {
+	.text-hide();
+}
+.text-overflow{
+	.text-overflow();
+}
+.vam {
+	vertical-align: middle!important;
+}
+.horiz-solid-line {
+	border-top: 1px solid #F2F2F2;
+}
+.verti-solid-line {
+	border-left: 1px solid #F2F2F2;
+}
+.ml15 {
+	margin-left: 5px;
+}
+.ml10 {
+	margin-left: 10px;
+}
+.ml15 {
+	margin-left: 15px;
+}
+.ml20 {
+	margin-left: 20px;
+}
+.mr5 {
+	margin-right: 5px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.mr15 {
+	margin-right: 15px;
+}
+.mr20 {
+	margin-right: 20px;
+}
+.m15 {
+	margin: 15px;
+}
+.mt15 {
+	margin-top: 15px;
+}
+.mt30 {
+	margin-top: 30px;
+}
+.mt45 {
+	margin-top: 45px;
+}
+.p15 {
+	padding: 15px;
+}
+.plr15 {
+	padding: 0 15px;
+}
+
+.color-red {
+  color: #CD0000;
+}
+.color-blue {
+  color: #4C8AD8;
+}
+.color-grey {
+  color: #909FA7;
+}
+.color-green {
+  color: #66c142;
+}
+.color-blue2 {
+  color: #2692FF;
+}
+.color-black {
+  color: #333;
+}
+.color-orange {
+  color: #ff9c4d;
+}
+
+.text-max {
+	display: inline-block;
+	vertical-align: middle;
+	width: 130px;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 10px;
+	border: 1px solid #A0C4FF;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #689FE4;
+	background-color: #E6EFFF;
+	text-align: center;
+}
+.text-error {
+	display: inline-block;
+	vertical-align: middle;
+	width: 124px;
+	height: 30px;
+	line-height: 24px;
+	margin-right: 10px;
+	border: 1px solid #B01207;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #B01207;
+	background-color: #FFEEEB;
+	text-align: center;
+	i {
+		margin-right: 3px;
+	}
+	i, b {
+		vertical-align: middle;
+		font-weight: normal;
+	}
+}
+.td-left-text {
+	overflow: hidden;
+	line-height: 40px;
+}
+.td-right-text {
+	float: right;
+	line-height: 40px;
+	.icon-close {
+		border: 2px solid #333;
+		border-radius: 100%;
+		font-size: 12px;
+		padding-right: 1px;
+		margin-right: 10px;
+		&:before {
+			position: relative;
+			top: 1px;
+			left: 1px;
+		}
+	}
+}
+
+.tab2-foot {
+	padding: 0 15px;
+	height: 59px;
+	line-height: 59px;
+	border-bottom: 1px solid #d6d7d8;
+	input {
+		width: 105px;
+		margin-left: 5px;
+	}
+	.yuan {
+		margin: 0 10px;
+	}
+}
+.text-warning {
+	display: inline-block;
+	color: #B01207;
+	.iconfont {
+		margin-left: 10px;
+	}
+}
+
+/**
+ * 宽度类
+ */
+ .w146 {
+	width: 146px!important;
+}
+.w225 {
+	width: 225px!important;
+}
+
+
+
+/* PC广告样式滚动特殊样式 */
+/* 图片滚动样式 */
+.biz-scrollbar-img180319{width:550px;margin:6px 0 0;position:relative;overflow:hidden;_height:100%;}
+.biz-scrollbar-img180319 .biz-pic-img-box{width:550px;height:160px;overflow:hidden;position:relative;}
+.biz-piclist{height:160px;position:absolute;left:0px;top:0px;background-color:#fff}
+.biz-piclist li{margin-right:5px;float:left;}
+.biz-piclist li img{width:105px;height:105px;display:block;border:1px solid #efefef;margin-bottom:6px;}
+.biz-piclist li p{width: 105px;line-height:22px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;word-wrap: normal;margin:0;font-size:13px;}
+.biz-piclist li p a,.biz-piclist li p a em{text-decoration: none;}
+.biz-piclist li p.price a{color: #FF6949;}
+.biz-swaplist{position:absolute;left:-30000px;top:0px}
+.biz-og-prev,.biz-og-next{width:12px;height:30px;background-color:#000;position:absolute;top:38px;z-index:99;cursor:pointer;filter:alpha(opacity=60);opacity:0.6;}
+.biz-og-prev{left:0px;}
+.biz-og-next{right:4px;}
+.biz-og-prev i,.biz-og-next i{width:0;height:0;font-size:0;line-height:0;display:block;position:absolute;border:6px solid transparent;border-style:dashed solid dashed dashed;position:absolute;top:8px;}
+.biz-og-prev i{border-right-color:#fff;right:4px;}
+.biz-og-next i{border-left-color:#fff;left:4px;}

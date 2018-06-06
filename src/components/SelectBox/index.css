@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 2px;
+  padding: 10px 10px;
+}
+
+.transferContainer {
+  display: flex;
+  height: inherit;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.transferContainer .arrow {
+  width: 8px;
+  height: 16px;
+  background-image: url(./imgs/fg_arrow.png);
+  margin: 0 10px;
+  align-self: center;
+}
+
+.treeViewWrapper {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.treeViewContainer {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid #afacac;
+}
+
+.btnSelect {
+  color: #378BD2;
+}
+.btnSelectDisabled {
+  color: rgba(0, 0, 0, 0.45) !important;
+  cursor: default;
+}

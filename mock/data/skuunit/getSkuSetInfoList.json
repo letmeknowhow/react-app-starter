@@ -1,0 +1,49 @@
+{
+  "enabled": true,
+  "value": "success",
+  "success": {
+    "flag": "0",
+    "msg": [],
+    "data": [
+      {
+        "skuSetId": "23489551",
+        "skuSetName": "上海鲜花"
+      },
+      {
+        "skuSetId": "23489552",
+        "skuSetName": "北京二手车"
+      },
+      {
+        "skuSetId": "23489553",
+        "skuSetName": "香港鲜花"
+      },
+      {
+        "skuSetId": "23489554",
+        "skuSetName": "北京鲜花"
+      },
+      {
+        "skuSetId": "23489555",
+        "skuSetName": "兰州鲜花"
+      },
+      {
+        "skuSetId": "23489556",
+        "skuSetName": "沈阳鲜花"
+      }
+    ],
+    "ajaxpc": [{
+			"method": "POST",
+			"pageNo": 2,
+			"pageSize": 20,
+			"param": ["suf_p4p_user_id=18569629", "success=function (resp,status,xhr){if(!model.set(model.parse(resp,xhr),options)){return false}if(success){success(model,resp)}}", "error=function (model,resp){resp=model===originalModel?resp:model;if(onError){onError(originalModel,resp,options)}else{originalModel.trigger(\"error\",originalModel,resp,options)}}", "preventCache=1422515953390", "url=/cpcadoverview/queryUnableLeftShowList.action"],
+			"recordCount": 566,
+			"url": "/cpcadoverview/queryUnableLeftShowList.action"
+		}]
+  },
+  "error": {
+    "flag": "1",
+    "msg": [
+      "input error"
+    ],
+    "data": []
+  }
+}

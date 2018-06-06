@@ -1,0 +1,34 @@
+{
+  "arch": "react",
+  "npm": {
+    "command": "npm",
+    "registry": "http://registry.npm.sogou"
+  },
+  "build": {
+    "command": "webpack",
+    "options": {
+      "progress": true,
+      "config": "webpack.config.js"
+    }
+  },
+  "mock": {
+    "suffix": ".action",
+    "disabled": false
+  },
+  "server": {
+    "command": "webpack-dev-server",
+    "options": {
+      "hot": true,
+      "colors": true,
+      "inline": true,
+      "progress": true,
+      "host": "0.0.0.0",
+      "port": 8223
+    }
+  },
+  "validate": {
+    "command": "jshint",
+    "options": {},
+    "src": "src"
+  }
+}

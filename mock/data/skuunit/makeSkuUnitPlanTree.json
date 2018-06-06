@@ -1,0 +1,78 @@
+{
+  "enabled": true,
+  "value": "success",
+  "success": {
+    "flag": "0",
+    "msg": [],
+    "data": [
+      {
+        "id": "416384_0",
+        "name": "416384",
+        "childAmount": 297,
+        "canUnFold": true,
+        "property": {
+          "id": 416384,
+          "idType": 0
+        },
+        "children": [
+          {
+            "id": "185715847_1",
+            "name": "0_test111",
+            "childAmount": 1000,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "isSelected": false
+          },
+          {
+            "id": "185715847_2",
+            "name": "test0312",
+            "childAmount": 1,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "isSelected": true
+          },
+          {
+            "id": "185715847_3",
+            "name": "0_test111_01",
+            "childAmount": 1000,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "isSelected": false
+          },
+          {
+            "id": "185715847_4",
+            "name": "0_test111_02",
+            "childAmount": 997,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            },
+            "isSelected": false
+          },
+          {
+            "id": "185715847_5",
+            "name": "计划20150401",
+            "childAmount": 1,
+            "canUnFold": true,
+            "property": {
+              "isExistFlag": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "error": {
+    "flag": "1",
+    "msg": [
+      "input error"
+    ],
+    "data": []
+  }
+}
