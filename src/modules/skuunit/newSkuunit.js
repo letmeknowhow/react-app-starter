@@ -13,11 +13,13 @@ import {
 } from 'api/skuunit';
 const INIT_STATE = 'newSkuunit/INIT_STATE';
 const OPEN_DRAWER = 'newSkuunit/OPEN_DRAWER';
-const CREATE_SKUSET = 'newSkuunit/CREATE_SKUSET';
+const CREATE_NEW = 'newSkuunit/CREATE_NEW';
+const CREATE_NEW_START = 'newSkuunit/CREATE_NEW_START';
 
 const initialState = {
   skusetList: [],
   drawerIsOpening: false,
+  submitting: false,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -30,11 +32,12 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, {
         drawerIsOpening: true,
       });
-    case CREATE_SKUSET:
+    case CREATE_NEW_START:
       return Object.assign({}, state, {
-        skusetList: [],
-        drawerIsOpening: false,
+        submitting: true,
       });
+    case CREATE_NEW:
+      return Object.assign({}, state, _handleCreateAction(action));
     case GET_SKUSET_INFO_LIST:
       return Object.assign({}, state, {
         skusetList: action.payload.data,
@@ -42,6 +45,20 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
+}
+
+const _handleCreateAction = (action) => {
+  let newState = {
+    skusetList: [],
+    drawerIsOpening: false,
+  };
+  if ((action.res && action.res.flag == '1')
+    || (action.payload && action.payload.flag == '1')) {
+    newState = {
+      submitting: false
+    };
+  }
+  return newState;
 }
 
 export function initNewSkuunit(planName) {
@@ -70,10 +87,11 @@ export function openDrawer() {
  */
 export function createNewOne(p1, p2) {
   return async dispatch => {
+    dispatch({ type: CREATE_NEW_START });
     try {
       const param = { p1, p2 };
       const res = await createNewOneApi(param);
-      dispatch({ type: CREATE_SKUSET, res });
+      dispatch({ type: CREATE_NEW, res });
     } catch (err) {
       dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: err } });
     }

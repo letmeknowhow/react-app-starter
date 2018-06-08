@@ -23,9 +23,6 @@ import commonStyles from '../../index.css';
   }, dispatch)
 )
 class Create extends Component {
-  state = {
-    submitting: false
-  }
   componentDidMount() {
     this.getInitialData();
   }
@@ -35,16 +32,12 @@ class Create extends Component {
       this.props.newSkuunit.drawerIsOpening != nextProps.newSkuunit.drawerIsOpening
       && false == nextProps.newSkuunit.drawerIsOpening
     ) {
-      this.setState({
-        submitting: false
-      });
       this.props.closeDrawer();
     }
   }
 
   render() {
-    const { skusetList } = this.props.newSkuunit;
-    const { submitting } = this.state;
+    const { skusetList, submitting } = this.props.newSkuunit;
     return (
       <div >
         <h1 className={commonStyles['coverage-title']}>新建单元</h1>
@@ -70,11 +63,7 @@ class Create extends Component {
   }
 
   onSubmit = () => {
-    this.setState({
-      submitting: true,
-    });
     this.props.createNewOne('1', '2');
-    // this.props.closeDrawer && this.props.closeDrawer()
   }
 }
 
