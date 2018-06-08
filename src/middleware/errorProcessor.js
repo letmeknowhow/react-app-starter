@@ -6,9 +6,9 @@
 import { ACTION_TYPE_ADD_ERROR } from 'common/constant';
 
 export default ({ dispatch, getState }) => next => action => {
-  if(action.res && action.res.flag == '1'){
+  if (action.res && action.res.flag == '1') {
     dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: action.res.msg[0] } });
-  } else if(action.payload && action.payload.flag == '1'){
+  } else if (action.payload && action.payload.flag == '1') {
     dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: action.payload.msg[0] } });
   }
   return next(action);
