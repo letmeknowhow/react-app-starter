@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action = {}) {
         submitting: true,
       });
     case CREATE_NEW:
-      return Object.assign({}, state, _handleCreateAction(action));
+      return Object.assign({}, state, _afterSubmit(action));
     case GET_SKUSET_INFO_LIST:
       return Object.assign({}, state, {
         skusetList: action.payload.data,
@@ -47,15 +47,18 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-const _handleCreateAction = (action) => {
-  let newState = {
-    skusetList: [],
-    drawerIsOpening: false,
-  };
+const _afterSubmit = (action) => {
+  let newState;
   if ((action.res && action.res.flag == '1')
     || (action.payload && action.payload.flag == '1')) {
     newState = {
       submitting: false
+    };
+  } else {
+    newState = {
+      skusetList: [],
+      drawerIsOpening: false,
+      submitting: false,
     };
   }
   return newState;
