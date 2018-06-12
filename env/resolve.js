@@ -9,6 +9,7 @@ module.exports = {
 			'modules': resolve('src/modules'),
 			'api': resolve('src/api'),
 			'common': resolve('src/common'),
+			'constants': resolve('src/constants'),
 		}
 	},
 	production: {},

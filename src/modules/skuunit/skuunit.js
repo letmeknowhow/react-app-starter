@@ -3,7 +3,7 @@
  * description: 单元
  * date: 2018/6/6
  */
-import { ACTION_TYPE_ADD_ERROR } from 'common/constant';
+import { ACTION_TYPE_ADD_ERROR } from 'constants/constant';
 
 import {
   showSkuunitListApi,
