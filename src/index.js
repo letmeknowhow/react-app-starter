@@ -2,7 +2,7 @@
   项目入口
 */
 import '../asset/css/app.less';
-
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

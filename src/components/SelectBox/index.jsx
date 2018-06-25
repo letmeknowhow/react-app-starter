@@ -21,6 +21,7 @@ class SelectBox extends Component {
     width: PropTypes.number,
     loadingL: PropTypes.bool,
     loadingR: PropTypes.bool,
+    childrenLoadParam: PropTypes.object
   };
 
   static defaultProps = {
@@ -482,13 +483,15 @@ class SelectBox extends Component {
    * 展开节点时查询子节点
    */
   _fetch = (planId, leftOrRight, cb) => {
+    //外界给额外的请求参数
+    let { childrenLoadParam } = this.props
     const stateLoading = leftOrRight == 'left' ? 'loadingL' : 'loadingR';
     this.setState({ [stateLoading]: true });
 
     axios({
       url: this.props.childrenLoadUrl,
       method: 'get',
-      params: { planId }
+      params: { planId,...childrenLoadParam }
     }).then((data) => {
       const grps = data.data.data[0].children;
       // const newLeft = this._appendGroupToPlan(this.state.left, grps, planId, true);
@@ -516,7 +519,7 @@ class SelectBox extends Component {
 
     let res = [...plans];
     for (let i = 0; i < res.length; i++) {
-      if (res[i].id === targetPlanId) {
+      if (res[i].id == targetPlanId) {
         if (isLeft && res[i][this.props.disabledPropsKey]) {
           for (let j = 0; j < groups.length; j++) {
             groups[j][this.props.disabledPropsKey] = true;

@@ -3,9 +3,9 @@ let Env = require('./env');
 let path = require('path');
 
 // 不同环境下的静态资源的url根路径
-let PRODUCT_STATIC_URL= '';
-let QA_STATIC_URL = '';
-let DEV_STATIC_URL = 'http://dev.static.fe.sogou';//联调环境静态资源存放路径
+let PRODUCT_STATIC_URL= 'http://static.hello.com';
+let QA_STATIC_URL = 'http://static.hello.com';
+let DEV_STATIC_URL = 'http://static.hello.com';//联调环境静态资源存放路径
 let FE_STATIC_URL = '/dist';
 
 // 根据环境来获取不同的静态资源部署的根路径

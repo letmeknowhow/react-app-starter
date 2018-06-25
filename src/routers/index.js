@@ -13,7 +13,7 @@ import UserErrorHandler from './UserErrorHandler';
 
 import { connect } from 'react-redux';
 
-const Skuunit = AsyncLoad({ loader: () => import(/* webpackChunkName: "skuunit" */ './Skuunit') });
+const Skuunit = AsyncLoad({ loader: () => import(/* webpackChunkName: "home" */ './Skuunit') });
 
 const Root = (props) => {
   const { location, history, match } = props;
@@ -21,8 +21,8 @@ const Root = (props) => {
     <div>
       <Header />
       <Switch>
-        <Route path="/skuunit" component={Skuunit} />
-        <Route render={() => <Redirect to="/skuunit" />} />
+        <Route path="/home" component={Skuunit} />
+        <Route render={() => <Redirect to="/home" />} />
       </Switch>
       <Footer />
       <UserErrorHandler />

@@ -27,8 +27,8 @@ let common = {
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          
-        }
+        },
+        { loader: 'postcss-loader', options: { sourceMap: true } },
       ]
     },
     {
@@ -41,17 +41,18 @@ let common = {
       use: [
         MiniCssExtractPlugin.loader,
         {
-            loader: 'css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-            options: {
-                minimize: true //css压缩
-            }
+          loader: 'css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          options: {
+            minimize: true //css压缩
+          }
         },
+        { loader: 'postcss-loader', options: { sourceMap: true } },
         {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true,
-              modifyVars: theme
-            }
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+            modifyVars: theme
+          }
         }
       ]
     },
