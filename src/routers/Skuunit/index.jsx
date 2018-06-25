@@ -196,8 +196,6 @@ class Skuunit extends Component {
   getDefaultQueryParams = () => {
     return {
       filter: {
-        skuUnitState: '-1',
-        skuUnitName: '',
       },
       page: {
         pageNo: 1,
@@ -208,17 +206,21 @@ class Skuunit extends Component {
   }
   
 
-  loadTable = (key, params, shouldReset) => {
-    if (key) {
-      this.setQueryParams(key, params, shouldReset);
-    }
-    this.props.showSkuunitList(this.formatQueryParams());
-  }
-
-  setQueryParams = (key, values, shouldReset) => {
+  loadTable = (key, params, shouldReset) => {    
     if (shouldReset) {
       this.resetQueryParams();
     }
+
+    if (key) {
+      this.setQueryParams(key, params, shouldReset);
+    }
+    this.props.history.push({
+      pathName: this.props.location.pathname,
+      search: queryString.stringify(this.formatQueryParams())
+    });
+  }
+
+  setQueryParams = (key, values, shouldReset) => {
     Object.assign(this.queryParams[key], { ...values });
   }
 
