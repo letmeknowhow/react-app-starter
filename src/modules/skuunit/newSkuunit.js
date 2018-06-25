@@ -6,20 +6,17 @@
  */
 import { ACTION_TYPE_ADD_ERROR } from 'constants/constant';
 import {
-  GET_SKUSET_INFO_LIST
-} from './skuunit';
-import {
-  createNewOneApi
+  createNewOneApi,
+  getSkuSetInfoListApi
 } from 'api/skuunit';
 const INIT_STATE = 'newSkuunit/INIT_STATE';
-const OPEN_DRAWER = 'newSkuunit/OPEN_DRAWER';
-const CREATE_NEW = 'newSkuunit/CREATE_NEW';
+export const CREATE_NEW = 'newSkuunit/CREATE_NEW';
 const CREATE_NEW_FAILED = 'newSkuunit/CREATE_NEW_FAILED';
 const SUBMIT_START = 'newSkuunit/SUBMIT_START';
+const GET_SKUSET_INFO_LIST = 'newSkuunit/GET_SKUSET_INFO_LIST';
 
 const initialState = {
   skusetList: [],
-  drawerIsOpening: false,
   submitting: false,
 };
 
@@ -29,10 +26,6 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state,
         initialState
       );
-    case OPEN_DRAWER:
-      return Object.assign({}, state, {
-        drawerIsOpening: true,
-      });
     case SUBMIT_START:
       return Object.assign({}, state, {
         submitting: true,
@@ -40,7 +33,6 @@ export default function reducer(state = initialState, action = {}) {
     case CREATE_NEW:
       return Object.assign({}, state, {
         skusetList: [],
-        drawerIsOpening: false,
         submitting: false,
       });
     case CREATE_NEW_FAILED:
@@ -56,27 +48,6 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function initNewSkuunit(planName) {
-  return async dispatch => {
-    try {
-      dispatch({
-        type: INIT_STATE
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
-
-/**
- * 抽屉打开
- */
-export function openDrawer() {
-  return async dispatch => {
-    dispatch({ type: OPEN_DRAWER });
-  };
-}
-
 /**
  * 修改单元对应的集合
  */
@@ -89,6 +60,21 @@ export function createNewOne(p1, p2) {
       dispatch({ type: CREATE_NEW, res });
     } catch (err) {
       dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: err } });
+    }
+  };
+}
+
+/**
+ * 单元列表查询展示
+ * @param {*} params 
+ */
+export function getSkuSetInfoList() {
+  return async dispatch => {
+    try {
+      const res = await getSkuSetInfoListApi();
+      await dispatch({ type: GET_SKUSET_INFO_LIST, payload: res });
+    } catch (err) {
+      console.log(err);
     }
   };
 }

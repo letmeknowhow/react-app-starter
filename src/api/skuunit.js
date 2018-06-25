@@ -74,14 +74,6 @@ export function createNewOneApi(params) {
   }
   return post('/skuunit/createNewOne.action', params)
     .then(res => {
-      // 开发时调试等待效果;
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          return resolve(res);
-        }, 1000);
-      });
-    })
-    .then(res => {
       return res.data
     });
 }
@@ -128,29 +120,6 @@ export function updateSkuUnitRelationApi(params) {
     return Promise.reject('params is wrong');
   }
   return post('/skuunit/updateSkuUnitRelation.action', params)
-    .then(res => {
-      // 开发时调试等待效果;
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          return resolve(res);
-        }, 1000);
-      });
-    })
-    .then(res => {
-      return res.data
-    });
-}
-
-
-/**
- * 修改排除词
- * @param {*} params 
- */
-export function updateExcludeKeyApi(params) {
-  if (!params) {
-    return Promise.reject('params is wrong');
-  }
-  return post('/skuunit/updateExcludeKey.action', params)
     .then(res => {
       return res.data
     });

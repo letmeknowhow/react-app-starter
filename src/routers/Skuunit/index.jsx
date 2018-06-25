@@ -4,8 +4,8 @@
  * date: 2018/6/6
  */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { DatePicker, Button, Input, Table, Select } from 'antd';
+import queryString from 'query-string';
+import { Button, Table, Select } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -13,14 +13,10 @@ import {
   modiSkuUnitName,
   updateSkuUnitPause,
   deleteSkuUnit,
-  getSkuSetInfoList,
   updateSkuUnitRelation,
   showModalDialog,
+  openDrawer
 } from 'modules/skuunit/skuunit';
-
-import { 
-  openDrawer, 
-} from 'modules/skuunit/newSkuunit';
 
 import {
   CreateDrawer,
@@ -44,7 +40,6 @@ const Option = Select.Option
     modiSkuUnitName,
     updateSkuUnitPause,
     deleteSkuUnit,
-    getSkuSetInfoList,
     updateSkuUnitRelation,
     showModalDialog,
     openDrawer,
@@ -63,6 +58,7 @@ class Skuunit extends Component {
     this.openDrawer = CreateDrawer(Create).openDrawer;
     this.queryParams = this.getDefaultQueryParams();
     this.modalDialog = null;
+    this.drawer = null;
   }
 
   COLUMNS = [
@@ -92,14 +88,14 @@ class Skuunit extends Component {
         text == 0 ?
           <span>启用
             <i
-              className="iconfont icon-zanting fr color-green edit-cursor"
+              className="iconfont icon-zanting fr color-orange edit-cursor"
               href="javascript:;"
               onClick={this.changeSingleUnitState(record.skuUnitId, record.skuUnitName, false)}
             />
           </span> :
           <span>暂停
             <i
-              className="iconfont icon-zhengchang fr color-orange edit-cursor"
+              className="iconfont icon-zhengchang fr color-green edit-cursor"
               href="javascript:;"
               onClick={this.changeSingleUnitState(record.skuUnitId, record.skuUnitName, true)}
             />
@@ -129,15 +125,25 @@ class Skuunit extends Component {
   ];
 
   componentDidMount() {
-    this.loadTable();
+    const { location: { search }, showSkuunitList } = this.props;
 
-    //提前获取集合列表
-    this.props.getSkuSetInfoList();
+    showSkuunitList({ ...this.formatQueryParams(), ...queryString.parse(search) });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.skuunit.showModal != nextProps.skuunit.showModal && false == nextProps.skuunit.showModal) {
+    const { skuunit, location: { search }, showSkuunitList } = this.props;
+    const { skuunit: nextSkuunit, location: { search: nextSearch } } = nextProps;
+    if (skuunit.showModal != nextSkuunit.showModal && false == nextSkuunit.showModal) {
       this.modalDialog.close();
+    }
+    if (skuunit.drawerIsOpening != nextSkuunit.drawerIsOpening && false == nextSkuunit.drawerIsOpening) {
+      this.drawer && this.drawer._close();
+    }
+    if (skuunit.modalLoading != nextSkuunit.modalLoading && false == nextSkuunit.modalLoading) {
+      this.modalDialog.cancelLoad();
+    }
+    if (search != nextSearch) {
+      showSkuunitList(queryString.parse(nextSearch));
     }
   }
 
@@ -232,8 +238,7 @@ class Skuunit extends Component {
   }
 
   showDrawer = () => {
-    this.props.openDrawer();
-    this.openDrawer();
+    this.wrapOpenDrawer();
   }
 
   findList = () => {
@@ -338,6 +343,14 @@ class Skuunit extends Component {
   wrapOpenModal = (cfg) => {
     this.props.showModalDialog();
     return openModal(cfg);
+  }
+
+  /**
+   * 打开抽屉时需要发送一个消息更改store中的状态
+   */
+  wrapOpenDrawer = (cfg) => {
+    this.props.openDrawer();
+    this.drawer = this.openDrawer(cfg);
   }
 }
 

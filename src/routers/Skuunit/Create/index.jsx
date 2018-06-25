@@ -8,10 +8,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import {
-  getSkuSetInfoList,
-} from 'modules/skuunit/skuunit';
-import {
   createNewOne,
+  getSkuSetInfoList
 } from 'modules/skuunit/newSkuunit';
 import commonStyles from '../../index.css';
 

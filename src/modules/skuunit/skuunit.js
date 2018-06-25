@@ -10,21 +10,20 @@ import {
   updateSkuUnitPauseApi,
   modiSkuUnitNameApi,
   deleteSkuUnitApi,
-  updateSkuUnitApi,
-  getSkuSetInfoListApi,
-  makeSelectedSkuUnitGrpTreeApi,
   updateSkuUnitRelationApi,
 } from 'api/skuunit';
 
-export const GET_SKUSET_INFO_LIST = 'skuunit/GET_SKUSET_INFO_LIST';
+import {
+  CREATE_NEW,
+} from './newSkuunit';
 
+const OPEN_DRAWER = 'skuunit/OPEN_DRAWER';
 const SHOW_LOADING = 'skuunit/SHOW_LOADING';
 const HIDE_LOADING = 'skuunit/HIDE_LOADING';
 const SHOW_SKU_UNIT_LIST = 'skuunit/SHOW_SKU_UNIT_LIST';
 const UPDATE_SKUUNIT_PAUSE = 'skuunit/UPDATE_SKUUNIT_PAUSE';
 const MODI_SKUUNIT_NAME = 'skuunit/MODI_SKUUNIT_NAME';
 const DELETE_SKUUNIT = 'skuunit/DELETE_SKUUNIT';
-const UPDATE_SKUUNIT_SKUSET = 'skuunit/UPDATE_SKUUNIT_SKUSET';
 const UPDATE_SKUUNIT_RELATION = 'skuunit/UPDATE_SKUUNIT_RELATION';
 const UPDATE_EXCLUDE_KEY = 'skuunit/UPDATE_EXCLUDE_KEY';
 const SHOW_MODAL_DIALOG = 'skuunit/SHOW_MODAL_DIALOG';
@@ -37,10 +36,15 @@ const initialState = {
   error: '',
   skusetList: [],
   showModal: false,
+  drawerIsOpening: false,
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case OPEN_DRAWER:
+      return Object.assign({}, state, {
+        drawerIsOpening: true,
+      });
     case SHOW_LOADING:
       return Object.assign({}, state, {
         isLoading: true,
@@ -66,15 +70,6 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, {
         skuunitList: _deleteskuUnits(state.skuunitList, action.payload)
       });
-    case GET_SKUSET_INFO_LIST:
-      return Object.assign({}, state, {
-        skusetList: action.payload.data,
-      });
-    case UPDATE_SKUUNIT_SKUSET:
-      return Object.assign({}, state, {
-        skuunitList: _changeSkuset4Unit(state.skuunitList, action.payload),
-        showModal: false,
-      });
     case UPDATE_SKUUNIT_RELATION:
       return Object.assign({}, state, {
         skuunitList: _changeScope4Unit(state.skuunitList, action.payload.data[0]),
@@ -83,6 +78,10 @@ export default function reducer(state = initialState, action = {}) {
     case SHOW_MODAL_DIALOG:
       return Object.assign({}, state, {
         showModal: true,
+      });
+    case CREATE_NEW:
+      return Object.assign({}, state, {
+        drawerIsOpening: false,
       });
     default:
       return state;
@@ -118,22 +117,6 @@ const _changeUnitName = (source, params) => {
   const target = newSource.find(item => item.skuUnitId === skuUnitId);
   if (target) {
     target.skuUnitName = skuUnitName;
-  }
-  return newSource
-}
-
-/**
- * 修改单元绑定的集合
- * @param {*} source 
- * @param {*} params 
- */
-const _changeSkuset4Unit = (source, params) => {
-  const { skuUnitId, skuSetId, skuSetName } = params;
-  const newSource = [...source];
-  const target = newSource.find(item => item.skuUnitId === skuUnitId);
-  if (target) {
-    target.skuSetId = skuSetId;
-    target.skuSetName = skuSetName;
   }
   return newSource
 }
@@ -190,21 +173,6 @@ export function showSkuunitList(planName) {
 }
 
 /**
- * 单元列表查询展示
- * @param {*} params 
- */
-export function getSkuSetInfoList() {
-  return async dispatch => {
-    try {
-      const res = await getSkuSetInfoListApi();
-      await dispatch({ type: GET_SKUSET_INFO_LIST, payload: res });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
-
-/**
  * 启用/暂停单元
  * @param {} params 
  */
@@ -213,7 +181,7 @@ export function updateSkuUnitPause(skuUnitIdList, isPause) {
     try {
       const param = { skuUnitIdList, isPause };
       const res = await updateSkuUnitPauseApi(param);
-      dispatch({ type: UPDATE_SKUUNIT_PAUSE, payload: param, res });     
+      dispatch({ type: UPDATE_SKUUNIT_PAUSE, payload: param, res });
     } catch (err) {
       dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: err } });
     }
@@ -271,29 +239,19 @@ export function updateSkuUnitRelation(skuUnitId, planIdList, groupIdList) {
 }
 
 /**
- * 修改排除词
- * @param {*} skuUnitId 
- * @param {*} planIdList 
- * @param {*} groupIdList 
- */
-export function updateExcludeKey(skuUnitId, excludeKeyList) {
-  return async dispatch => {
-    try {
-      const param = { skuUnitId, excludeKeyList };
-      const res = await updateExcludeKeyApi(param);
-      dispatch({ type: UPDATE_EXCLUDE_KEY, payload: res });
-    } catch (err) {
-      dispatch({ type: ACTION_TYPE_ADD_ERROR, payload: { errorMsg: err } });
-    }
-  };
-}
-
-
-/**
  * modal窗口打开
  */
 export function showModalDialog() {
   return async dispatch => {
-      dispatch({ type: SHOW_MODAL_DIALOG});    
+    dispatch({ type: SHOW_MODAL_DIALOG });
+  };
+}
+
+/**
+ * 抽屉打开
+ */
+export function openDrawer() {
+  return async dispatch => {
+    dispatch({ type: OPEN_DRAWER });
   };
 }

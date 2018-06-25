@@ -36,6 +36,12 @@ class KModal extends Component {
     })
   }
 
+  cancelLoad = () => {
+    this.setState({
+      loading: false,
+    })
+  }
+  
   render() {
     const { visible, loading } = this.state;
     return visible ?
